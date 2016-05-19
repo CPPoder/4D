@@ -33,4 +33,14 @@
 *.vcxproj.user
 *.txt
 stdafx.h
-*.
+*.suo
+*.db
+*.log
+*.lastbuildstate
+*.tlog
+*.idb
+*.pdb
+*targetver.h
+*.ilk
+*.ipch
+
