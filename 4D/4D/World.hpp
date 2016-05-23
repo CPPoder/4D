@@ -1,6 +1,8 @@
 #ifndef WORLD_HPP
 #define WORLD_HPP
 
+#include "Element.hpp"
+
 class World : public Element
 {
 private:
@@ -11,14 +13,15 @@ private:
 
 public:
     World();
-    ~World();
+    ~World() override;
 
-}
+	void handleEvents() override;
+	void update() override;
+	void render() override;
 
 
 
-
-
+};
 
 
 #endif
