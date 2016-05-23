@@ -43,3 +43,7 @@
 *.ilk
 *.ipch
 *.sln
+
+#Codeblocks
+*.layout
+*.depend
