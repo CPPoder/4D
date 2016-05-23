@@ -5,19 +5,20 @@
 
 class Element
 {
-
-
 private:
-    virtual void handleEvents() = 0;
-	virtual void update();
-	virtual void render();
 
 
 public:
     Element();
-    ~Element();
+    virtual ~Element();
+
+	virtual void handleEvents() = 0;
+	virtual void update() = 0;
+	virtual void render() = 0;
+
+};
 
 
-}
+
 
 #endif
