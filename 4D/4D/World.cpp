@@ -2,7 +2,8 @@
 #include "World.hpp"
 
 
-World::World()
+World::World(float _size1, float _size2, float _size3, float _size4)
+    : msize1(_size1), msize2(_size2), msize3(_size3), msize4(_size4)
 {
 
 }

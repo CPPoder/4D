@@ -6,7 +6,7 @@
 class World : public Element
 {
 private:
-    double mWorldSize; //
+    float mSize1, mSize2, mSize3, mSize4; //
 
 
 
@@ -15,9 +15,9 @@ public:
     World();
     ~World() override;
 
-	void handleEvents() override;
-	void update() override;
-	void render() override;
+    void handleEvents() override;
+    void update() override;
+    void render() override;
 
 
 
