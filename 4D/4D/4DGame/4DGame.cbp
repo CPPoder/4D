@@ -102,6 +102,7 @@
 		<Unit filename="../Element.hpp" />
 		<Unit filename="../Framework.cpp" />
 		<Unit filename="../Framework.hpp" />
+		<Unit filename="../Object.hpp" />
 		<Unit filename="../World.cpp" />
 		<Unit filename="../World.hpp" />
 		<Unit filename="../main.cpp" />
