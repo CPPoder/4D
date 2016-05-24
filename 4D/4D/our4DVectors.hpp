@@ -1,6 +1,8 @@
 #ifndef OUR4DVECTORS_HPP
 #define OUR4DVECTORS_HPP
 
+#include <iostream>
+
 
 namespace fd
 {
@@ -38,6 +40,12 @@ namespace fd
 		{
 		}
 
+
+		//Output on Terminal
+		void outputOnTerminal(std::string _separator = "\t", std::string _outputDescription = "") const
+		{
+			std::cout << _outputDescription << x1 << _separator << x2 << _separator << x3 << _separator << x4 << std::endl;
+		}
 
 	};
 
