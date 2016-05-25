@@ -1,7 +1,8 @@
 #ifndef CUBOID_HPP
 #define CUBOID_HPP
 
-
+#include "SFML\Graphics.hpp"
+#include <vector>
 #include "Object.hpp"
 #include "our4DVectors.hpp"
 
@@ -16,6 +17,8 @@ private:
 public:
     Cuboid(fd::Vector4f _position, fd::Vector4f _diagonal);
     ~Cuboid() override;
+
+    std::vector<sf::VertexArray> getEdges();
 
     void handleEvents() override;
     void update() override;
