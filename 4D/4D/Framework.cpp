@@ -5,6 +5,7 @@
 Framework::Framework()
 {
 	pRenderWindow = new sf::RenderWindow(sf::VideoMode(1440, 900), "4D Engine");
+	pWorld = new World(100.f, 100.f, 100.f, 100.f);
 }
 
 //Destructor
@@ -12,6 +13,9 @@ Framework::~Framework()
 {
 	delete pRenderWindow;
 	pRenderWindow = nullptr;
+
+	delete pWorld;
+	pWorld = nullptr;
 }
 
 

@@ -1,20 +1,24 @@
-#include "element.hpp"
+#ifndef OBJECT_HPP
+#define OBJECT_HPP
 
+#include "element.hpp"
 #include "our4DVectors.hpp"
 
 
 class Object : public Element
 {
 private:
-    Vector4f mPosition;
+    fd::Vector4f mPosition;
 
 public:
     Object();
-    ~Object() override;
+    virtual ~Object();
 
-    void handleEvents() override;
-    void update() override;
-    void render() override;
+    virtual void handleEvents() = 0;
+    virtual void update() = 0;
+    virtual void render() = 0;
 
 
 };
+
+#endif // OBJECT_HPP

@@ -15,11 +15,12 @@ class Framework
 {
 private:
 	sf::RenderWindow *pRenderWindow;
+	World *pWorld;
 
 	void handleEvents();
 	void update();
 	void render();
-	
+
 
 public:
 	Framework();

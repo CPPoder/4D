@@ -3,8 +3,9 @@
 
 
 World::World(float _size1, float _size2, float _size3, float _size4)
-    : msize1(_size1), msize2(_size2), msize3(_size3), msize4(_size4)
+    : mSize1(_size1), mSize2(_size2), mSize3(_size3), mSize4(_size4)
 {
+
 
 }
 

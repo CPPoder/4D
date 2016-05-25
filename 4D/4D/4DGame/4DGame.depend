@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1463754202 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
+1464172505 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
 	"stdafx.h"
 	"Framework.hpp"
 
@@ -7,9 +7,10 @@
 	<stdio.h>
 	<tchar.h>
 
-1464026663 c:\users\sebi\documents\4dstuff\github\4d\4d\framework.hpp
+1464172485 c:\users\sebi\documents\4dstuff\github\4d\4d\framework.hpp
 	"SFML\Graphics.hpp"
 	<iostream>
+	"our4DVectors.hpp"
 	"Element.hpp"
 	"World.hpp"
 
@@ -1537,10 +1538,33 @@
 1464026663 c:\users\sebi\documents\4dstuff\github\4d\4d\element.hpp
 	<iostream>
 
-1464026664 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
+1464172806 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
+	<vector>
 	"Element.hpp"
+	"Cuboid.hpp"
 
 1464026663 source:c:\users\sebi\documents\4dstuff\github\4d\4d\element.cpp
 	"stdafx.h"
 	"Element.hpp"
+
+1464164154 c:\users\sebi\documents\4dstuff\github\4d\4d\our4dvectors.hpp
+
+1464171472 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
+	"Object.hpp"
+
+1464171892 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
+	"element.hpp"
+	"our4DVectors.hpp"
+
+1464164471 source:c:\users\sebi\documents\4dstuff\github\4d\4d\world.cpp
+	"stdafx.h"
+	"World.hpp"
+
+1464172024 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
+	"our4DVectors.hpp"
+	"Cuboid.hpp"
+
+1464171856 c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.hpp
+	"Object.hpp"
+	"our4DVectors.hpp"
 
