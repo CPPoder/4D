@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 
-#include "our4DVectors.hpp"
+#include "ourVectors.hpp"
 
 namespace fd
 {
@@ -34,10 +34,18 @@ namespace fd
 		}
 
 		//Componentwise constructor
-		/*Vector4(T _x1, T _x2, T _x3, T _x4)
-			: x1(_x1), x2(_x2), x3(_x3), x4(_x4)
+		Matrix4(Vector4<T> _vec1, Vector4<T> _vec2, Vector4<T> _vec3, Vector4<T> _vec4, bool asColumnVectors)
+			: Matrix4()
 		{
-		}*/
+			if (asColumnVectors)
+			{
+
+			}
+			else
+			{
+				
+			}
+		}
 
 		//Copy constructor
 		/*template <typename S> explicit Vector4(Vector4<S> const & _vector)
