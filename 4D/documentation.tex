@@ -128,7 +128,52 @@ A change of coordinates can be easily expressed in terms of the current observer
 mView_{new} = mView_{old} \cdot R.
 \end{equation}
 
+The standard coordinates of S shall be expressed by $x_1, x_2, x_3, x_4$. For some reason, I would like to introduce new coordinates for the initial state of the observer: 
 
+\begin{equation}
+y = (0, 0, \frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}})^T
+\end{equation} and
+
+\begin{equation}
+v = (0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})^T
+\end{equation}
+
+and ($x_1, x_2, y, v$) the initial observers coordinates. 
+
+Moving of the observer then is implemented by: 
+
+1) Moving in direction v (\enquote{view}) with the current speed with the possibility of accelerating and slowing down. 
+
+2) Moving the view in either positive or negative $x_1, x_2$ or $y$ direction with (constant) angular speed. 
+
+The rotations describing the three possibilities in 2) are given by 4x4 matrices: 
+
+\begin{equation}
+R_{x_1}(\phi) = \begin{array}{cccc}
+\cos(\phi) & 0 & 0 & \sin(\phi) \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 1 & 0 \\ 
+-\sin(\phi) & 0 & 0 & \cos(\phi)
+\end{array} 
+\end{equation}
+
+\begin{equation}
+R_{x_2}(\phi) = \begin{array}{cccc}
+1 & 0 & 0 & 0 \\ 
+0 & \cos(\phi) & 0 & \sin(\phi) \\ 
+0 & 0 & 1 & 0 \\ 
+0 & -\sin(\phi) & 0 & \cos(\phi)
+\end{array} 
+\end{equation}
+
+\begin{equation}
+R_{y}(\phi) = \begin{array}{cccc}
+1 & 0 & 0 & 0\\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & \cos(\phi) & \sin(\phi) \\ 
+0 & 0 & -\sin(\phi) & \cos(\phi)
+\end{array} 
+\end{equation}.
 
 
 
