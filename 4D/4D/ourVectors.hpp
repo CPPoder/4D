@@ -4,6 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
+#include <initializer_list>
+
+#include "SFML\Graphics.hpp"
 
 
 namespace fd
@@ -31,6 +34,26 @@ namespace fd
 			}
 		}
 
+		//Constructor from scalar
+		explicit Vector(T scalar)
+			: Vector()
+		{
+			for (unsigned int pos = 0; pos < dimension; pos++)
+			{
+				vector.at(pos) = scalar;
+			}
+		}
+
+		//Constructor from initiallizer list (Throws an exception std::length_error for unvalid initializer_list sizes)
+		explicit Vector(std::initializer_list<T> const & initList)
+			: vector(initList)
+		{
+			if (initList.size() != dimension)
+			{
+				throw std::length_error("Constructor Vector<T>::Vector(std::initializer_list<T> const &) was called with an initializer_list of the wrong length!");
+			}
+		}
+
 		//Constructor from std::vector (Throws an exception std::length_error for unvalid vectorSizes)
 		explicit Vector(std::vector<T> const & vectorOfCorrectSize)
 			: vector(vectorOfCorrectSize)
@@ -50,6 +73,9 @@ namespace fd
 				vector.at(pos) = vectorInput.getValueAt(pos);
 			}
 		}
+
+		//Constructor from sf::Vectors
+
 
 
 		////////////////////////
@@ -106,6 +132,26 @@ template <typename T, unsigned int dim> Vector<T, dim> operator+ (Vector<T, dim>
 	return result;
 }
 
+//Addition of scalar and vector (componentwise)
+template <typename T, unsigned int dim> Vector<T, dim> operator+ (Vector<T, dim> const & vec, T scalar)
+{
+	Vector<T, dim> result;
+	for (unsigned int pos = 0; pos < dim; pos++)
+	{
+		result.at(pos) = scalar + vec.getValueAt(pos);
+	}
+	return result;
+}
+template <typename T, unsigned int dim> Vector<T, dim> operator+ (T scalar, Vector<T, dim> const & vec)
+{
+	Vector<T, dim> result;
+	for (unsigned int pos = 0; pos < dim; pos++)
+	{
+		result.at(pos) = scalar + vec.getValueAt(pos);
+	}
+	return result;
+}
+
 //Subtraction
 template <typename T, unsigned int dim> Vector<T, dim> operator- (Vector<T, dim> const & vec1, Vector<T, dim> const & vec2)
 {
@@ -113,6 +159,26 @@ template <typename T, unsigned int dim> Vector<T, dim> operator- (Vector<T, dim>
 	for (unsigned int pos = 0; pos < dim; pos++)
 	{
 		result.at(pos) = vec1.getValueAt(pos) - vec2.getValueAt(pos);
+	}
+	return result;
+}
+
+//Subtraction between scalar and vector (componentwise)
+template <typename T, unsigned int dim> Vector<T, dim> operator- (Vector<T, dim> const & vec, T scalar)
+{
+	Vector<T, dim> result;
+	for (unsigned int pos = 0; pos < dim; pos++)
+	{
+		result.at(pos) = vec.getValueAt(pos) - scalar;
+	}
+	return result;
+}
+template <typename T, unsigned int dim> Vector<T, dim> operator- (T scalar, Vector<T, dim> const & vec)
+{
+	Vector<T, dim> result;
+	for (unsigned int pos = 0; pos < dim; pos++)
+	{
+		result.at(pos) = scalar - vec.getValueAt(pos);
 	}
 	return result;
 }
@@ -127,8 +193,6 @@ template <typename T, unsigned int dim> Vector<T, dim> operator* (T scalar, Vect
 	}
 	return result;
 }
-
-//S-Multiplication
 template <typename T, unsigned int dim> Vector<T, dim> operator* (Vector<T, dim> const & vec, T scalar)
 {
 	Vector<T, dim> result;
@@ -151,12 +215,23 @@ template <typename T, unsigned int dim> Vector<T, dim> operator/ (Vector<T, dim>
 }
 
 //Strange Division
-template <typename T, unsigned int dim> Vector<T, dim> operator/ (T scalar, Vector<T, dim> & vec)
+template <typename T, unsigned int dim> Vector<T, dim> operator/ (T scalar, Vector<T, dim> const & vec)
 {
 	Vector<T, dim> result;
 	for (unsigned int pos = 0; pos < dim; pos++)
 	{
 		result.at(pos) = scalar / vec.getValueAt(pos);
+	}
+	return result;
+}
+
+//Componentwise Division
+template <typename T, unsigned int dim> Vector<T, dim> operator/ (Vector<T, dim> const & vec1, Vector<T, dim> const & vec2)
+{
+	Vector<T, dim> result;
+	for (unsigned int pos = 0; pos < dim; pos++)
+	{
+		result.at(pos) = vec1.getValueAt(pos) / vec2.getValueAt(pos);
 	}
 	return result;
 }
@@ -292,6 +367,35 @@ template <typename T, unsigned int dim> bool operator< (Vector<T, dim> const & v
 		}
 	}
 	return (result);
+}
+
+
+//////////////////////////////////////////
+//Function templates : Mathematical functions
+
+//Cross product
+template<typename T> Vector<T, 3> crossProduct(Vector<T, 3> const & vec1, Vector<T, 3> const & vec2)
+{
+	Vector<T, 3> result;
+	result.at(0) = (vec1.getValueAt(1) * vec2.getValueAt(2) - vec1.getValueAt(2) * vec2.getValueAt(1));
+	result.at(1) = (vec1.getValueAt(2) * vec2.getValueAt(0) - vec1.getValueAt(0) * vec2.getValueAt(2));
+	result.at(2) = (vec1.getValueAt(0) * vec2.getValueAt(1) - vec1.getValueAt(1) * vec2.getValueAt(0));
+	return result;
+}
+
+
+//////////////////////////////////////////
+//Function templates : Helpful functions
+
+//Output on terminal
+template <typename T, unsigned int dim> void outputOnTerminal(Vector<T, dim> vec, std::string separator = "\t", std::string outputDescription = "")
+{
+	std::cout << outputDescription;
+	for (unsigned int pos = 0; pos < (dim - 1); pos++)
+	{
+		std::cout << vec.at(pos) << separator;
+	}
+	std::cout << vec.at(dim - 1) << std::endl;
 }
 
 
