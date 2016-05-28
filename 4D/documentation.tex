@@ -1,0 +1,135 @@
+\documentclass[titlepage]{scrartcl}
+% Code Darstellung
+\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{multicol}
+
+%lange Tabellen
+\usepackage{longtable}
+%Referenzen zwischen unterschiedlichen Dateien
+\usepackage{xr}
+\externaldocument{theorie}
+\usepackage{lscape}
+%Deutsche Sprachunterstützung
+\usepackage[utf8]{inputenc}
+%\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+\usepackage{marvosym}
+\DeclareUnicodeCharacter{20AC}{\EUR}
+
+%Für das Einbinden von Bildern
+\usepackage{graphicx}
+
+%Für das Fixieren von Bildern
+\usepackage{float}
+
+%Tabellen
+\usepackage{array}
+
+%Tabellen automatisch schoener
+\usepackage{booktabs}
+
+%Caption
+\usepackage{caption}
+\usepackage{subcaption}
+
+%Formeln
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{dsfont}
+
+%\usepackage{mnsymbol}
+
+% Interssante natbib Optionen: 
+% numbers : Nummerierte Zitateinheiten
+% sort&compress : Bei mehrfachen Zitaten, Sortierung und ggf. Verkürzungen
+%\usepackage[]{natbib}
+
+%Vectorpfeile schöner
+\usepackage{esvect}
+
+%Formatierung
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%Schaltbilder malen
+%\usepackage[europeanresistors,cuteinductors,siunitx]{circuitikz}
+\usepackage{comment}
+\usepackage{csquotes}
+
+%Formatierungsanweisungen
+\newcommand{\wichtig}[1]{\underline{\large{#1}}}
+%\newcommand{\aref}[1]{Abb. \ref{#1}}
+\newcommand{\aref}[1]{figure \ref{#1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+
+%Klickbare Referenzen
+\usepackage[hidelinks]{hyperref}
+
+%Kein Einrücken
+\setlength{\parindent}{0pt}
+
+%Breite Tabellen
+\usepackage{tabularx}
+
+\begin{document}
+
+\title{Documentation of 4D engine}
+
+\maketitle
+
+\section{Structure of the project}
+
+List of classes: 
+
+\begin{itemize}
+\item Framework: 
+
+Contains opening the renderWindow
+
+\item World
+
+Several tasks: hosting all objects and the observer, 
+
+\item Element:
+
+Basic class of all classes which have the functions render, update, handleEvents
+
+\item Object:
+
+Basic class of all objects in space
+
+\item Cuboid:
+
+Describes a cuboid in space
+
+\item Observer:
+
+Describes the position and orientation of the observer in space. Position is encoded in a 4D vector, orientation (\enquote{mView}) is encoded in a 4D matrix (in SO(4)) describing the transformation from stanard coordinates to the observer coordinates 
+
+\end{itemize}
+
+\section{Idea of the 4D projection and controlling}
+
+Observer has the variable fd::Vector4f mView which describes the transformation from standard coordinates ($S$) to observer coordinates ($S'$):
+
+\begin{equation}
+mView: S \to S'
+\end{equation}
+
+A change of coordinates can be easily expressed in terms of the current observer coordintes as a trafo R (in SO(4)). The new observers coordinates are then given by $S'_{new} = R \cdot S'_{old}$ and the new mView matrix then is described by 
+
+\begin{equation}
+mView_{new} = mView_{old} \cdot R.
+\end{equation}
+
+
+
+
+
+\end{document}
