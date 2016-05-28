@@ -8,16 +8,21 @@ Observer::Observer()
         mPosition.at(i) = 0.f;
     }
 
-    mView.at(0) = 1.f;
-
-    for(int i = 1; i < 4; i++)
-    {
-        mView.at(i) = 0.f;
-    }
 }
 
-Observer::Observer(fd::Vector4f _position, fd::Vector4f _view)
+Observer::Observer(fd::Vector4f _position, fd::Matrix4f _view)
     : mPosition(_position), mView(_view)
 {
 
+}
+
+Observer::~Observer()
+{
+
+}
+
+Observer::rotationX1(float phi)
+{
+    fd::Matrix4f rotMatrix();
+    rotMatrix.at(0,0) = cos(phi);
 }

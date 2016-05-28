@@ -47,3 +47,10 @@
 #Codeblocks
 *.layout
 *.depend
+
+#Latex
+*.aux
+*.log
+*.out
+*.pdf
+*.gz
