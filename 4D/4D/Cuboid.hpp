@@ -4,7 +4,7 @@
 #include "SFML\Graphics.hpp"
 #include <vector>
 #include "Object.hpp"
-#include "our4DVectors.hpp"
+#include "ourVectors.hpp"
 
 // Describes a 4D cuboid with generically different lengths of the edges
 class Cuboid : public Object
@@ -23,6 +23,8 @@ public:
     void handleEvents() override;
     void update() override;
     void render() override;
+
+    fd::Vector4f getPosition();
 
 };
 

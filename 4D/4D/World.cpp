@@ -1,12 +1,20 @@
 #include "stdafx.h"
 #include "World.hpp"
+#include <iostream>
+#include <vector>
 
-
-World::World(float _size1, float _size2, float _size3, float _size4)
-    : mSize1(_size1), mSize2(_size2), mSize3(_size3), mSize4(_size4)
+World::World()
 {
+    //Default standard while developing
+    mSize1 = 100.f;
+    mSize2 = 100.f;
+    mSize3 = 100.f;
+    mSize4 = 100.f;
 
+    std::vector<float> mTemp (4, 10.f);
+    fd::Vector4f mTemp4f(mTemp);
 
+    mCuboids.push_back(Cuboid(mTemp4f, mTemp4f));
 }
 
 

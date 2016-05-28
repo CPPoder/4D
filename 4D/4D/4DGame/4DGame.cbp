@@ -98,6 +98,8 @@
 			<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW" />
 			<Add directory="C:/Users/Sebi/Documents/Installation_files/SFML-2.3.2-windows-gcc-4.8.1-tdm-32-bit/SFML-2.3.2/lib" />
 		</Linker>
+		<Unit filename="../Cuboid.cpp" />
+		<Unit filename="../Cuboid.hpp" />
 		<Unit filename="../Element.cpp" />
 		<Unit filename="../Element.hpp" />
 		<Unit filename="../Framework.cpp" />
@@ -107,7 +109,7 @@
 		<Unit filename="../World.cpp" />
 		<Unit filename="../World.hpp" />
 		<Unit filename="../main.cpp" />
-		<Unit filename="../our4DVectors.hpp" />
+		<Unit filename="../ourVectors.hpp" />
 		<Unit filename="../stdafx.cpp" />
 		<Unit filename="../stdafx.h" />
 		<Extensions>

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1464172505 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
+1464424260 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
 	"stdafx.h"
 	"Framework.hpp"
 
@@ -7,10 +7,10 @@
 	<stdio.h>
 	<tchar.h>
 
-1464172485 c:\users\sebi\documents\4dstuff\github\4d\4d\framework.hpp
+1464424251 c:\users\sebi\documents\4dstuff\github\4d\4d\framework.hpp
 	"SFML\Graphics.hpp"
 	<iostream>
-	"our4DVectors.hpp"
+	"ourVectors.hpp"
 	"Element.hpp"
 	"World.hpp"
 
@@ -1538,10 +1538,11 @@
 1464026663 c:\users\sebi\documents\4dstuff\github\4d\4d\element.hpp
 	<iostream>
 
-1464172806 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
+1464429401 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
 	<vector>
 	"Element.hpp"
 	"Cuboid.hpp"
+	"Observer.hpp"
 
 1464026663 source:c:\users\sebi\documents\4dstuff\github\4d\4d\element.cpp
 	"stdafx.h"
@@ -1552,21 +1553,42 @@
 1464171472 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
 	"Object.hpp"
 
-1464171892 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
+1464423718 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
 	"element.hpp"
-	"our4DVectors.hpp"
+	"ourVectors.hpp"
 
-1464172645 source:c:\users\sebi\documents\4dstuff\github\4d\4d\world.cpp
+1464427875 source:c:\users\sebi\documents\4dstuff\github\4d\4d\world.cpp
 	"stdafx.h"
 	"World.hpp"
+	<iostream>
+	<vector>
 
-1464172024 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
-	"our4DVectors.hpp"
+1464425635 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
+	"SFML\Graphics.hpp"
+	<vector>
+	"ourVectors.hpp"
 	"Cuboid.hpp"
 
-1464186703 c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.hpp
+1464425635 c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.hpp
 	"SFML\Graphics.hpp"
 	<vector>
 	"Object.hpp"
-	"our4DVectors.hpp"
+	"ourVectors.hpp"
+
+1464423464 c:\users\sebi\documents\4dstuff\github\4d\4d\our4dmatrices.hpp
+	"SFML\Graphics.hpp"
+	<iostream>
+	<vector>
+	"ourVectors.hpp"
+
+1464423464 c:\users\sebi\documents\4dstuff\github\4d\4d\ourvectors.hpp
+	<iostream>
+	<vector>
+	<stdexcept>
+
+1464429309 c:\users\sebi\documents\4dstuff\github\4d\4d\observer.hpp
+	"ourVectors.hpp"
+
+1464429277 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
+	"Observer.hpp"
 

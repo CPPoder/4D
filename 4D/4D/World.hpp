@@ -7,18 +7,26 @@
 
 #include "Cuboid.hpp"
 
+#include "Observer.hpp"
+
 class World : public Element
 {
 private:
     float mSize1, mSize2, mSize3, mSize4; //
 
+    // Objects in the world
     std::vector<Cuboid> mCuboids;
+
+
+    //The observer
+    Observer observer();
+
 
 
 
 
 public:
-    World(float _size1, float _size2, float _size3, float _size4);
+    World();
     ~World() override;
 
     void handleEvents() override;

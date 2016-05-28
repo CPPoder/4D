@@ -1,6 +1,6 @@
 #include "SFML\Graphics.hpp"
 #include <vector>
-#include "our4DVectors.hpp"
+#include "ourVectors.hpp"
 #include "Cuboid.hpp"
 
 Cuboid::Cuboid(fd::Vector4f _position, fd::Vector4f _diagonal)
@@ -33,3 +33,9 @@ void Cuboid::update()
 {
 
 }
+
+fd::Vector4f Cuboid::getPosition()
+{
+    return(Cuboid::mPosition);
+}
+
