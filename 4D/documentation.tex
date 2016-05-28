@@ -116,16 +116,26 @@ Describes the position and orientation of the observer in space. Position is enc
 
 \section{Idea of the 4D projection and controlling}
 
-Observer has the variable fd::Vector4f mView which describes the transformation from standard coordinates ($S$) to observer coordinates ($S'$):
+Observer has the variable fd::Vector4f mView which describes the transformation from observer coordinates ($S'$) to standard coordinates ($S$):
 
 \begin{equation}
-mView: S \to S'
+mView: S' \to S
 \end{equation}
 
 A change of coordinates can be easily expressed in terms of the current observer coordintes as a trafo R (in SO(4)). The new observers coordinates are then given by $S'_{new} = R \cdot S'_{old}$ and the new mView matrix then is described by 
 
 \begin{equation}
-mView_{new} = mView_{old} \cdot R.
+mView_{new} = mView_{old} \cdot R^{-1},
+\end{equation}
+
+as then $mView : S'_{new} \to S'_{old} \to S$.
+
+The advantage of this convention is that during the calculation of a points components in observers coordinates from its standard coordinates, one has to use the map $S' \to S$ as it's the inverse the map mapping the system $S$ on $S'$. Hence one does not need to invert the mView.
+
+The total transformation of a points coordinates in S to its components in S' is then given by first applying the translation (which is given in terms of S) and then applying the map mView:
+
+\begin{equation}
+\vec{x}_{S'} = mView \cdot (\vec{x}_S - \vec{mPosition}).
 \end{equation}
 
 The standard coordinates of S shall be expressed by $x_1, x_2, x_3, x_4$. For some reason, I would like to introduce new coordinates for the initial state of the observer: 
@@ -174,6 +184,8 @@ R_{y}(\phi) = \begin{array}{cccc}
 0 & 0 & -\sin(\phi) & \cos(\phi)
 \end{array} 
 \end{equation}.
+
+
 
 
 

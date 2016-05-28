@@ -18,6 +18,8 @@ public:
     void update();
 
     void rotationX1(float phi);
+    void rotationX2(float phi);
+    void rotationY(float phi);
 
 };
 

@@ -106,9 +106,12 @@
 		<Unit filename="../Framework.hpp" />
 		<Unit filename="../Object.cpp" />
 		<Unit filename="../Object.hpp" />
+		<Unit filename="../Observer.cpp" />
+		<Unit filename="../Observer.hpp" />
 		<Unit filename="../World.cpp" />
 		<Unit filename="../World.hpp" />
 		<Unit filename="../main.cpp" />
+		<Unit filename="../our4DMatrices.hpp" />
 		<Unit filename="../ourVectors.hpp" />
 		<Unit filename="../stdafx.cpp" />
 		<Unit filename="../stdafx.h" />
