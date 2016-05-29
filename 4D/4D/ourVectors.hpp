@@ -50,7 +50,7 @@ namespace fd
 		{
 			if (initList.size() != dimension)
 			{
-				throw std::length_error("Constructor Vector<T>::Vector(std::initializer_list<T> const &) was called with an initializer_list of the wrong length!");
+				throw std::length_error("Constructor Vector::Vector(std::initializer_list<T> const &) was called with an initializer_list of the wrong length!");
 			}
 		}
 
@@ -107,7 +107,7 @@ namespace fd
 	};
 
 
-////////////////////
+////////////////////////////////////////
 //Function templates : Standard calculus
 
 //Additive inverse
@@ -388,7 +388,7 @@ template<typename T> Vector<T, 3> crossProduct(Vector<T, 3> const & vec1, Vector
 //Function templates : Helpful functions
 
 //Output on terminal
-template <typename T, unsigned int dim> void outputOnTerminal(Vector<T, dim> vec, std::string separator = "\t", std::string outputDescription = "")
+template <typename T, unsigned int dim> void outputOnTerminal(Vector<T, dim> const & vec, std::string separator = "\t", std::string outputDescription = "")
 {
 	std::cout << outputDescription;
 	for (unsigned int pos = 0; pos < (dim - 1); pos++)
