@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1464424260 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
+1464557201 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
 	"stdafx.h"
 	"Framework.hpp"
 
@@ -7,8 +7,9 @@
 	<stdio.h>
 	<tchar.h>
 
-1464424251 c:\users\sebi\documents\4dstuff\github\4d\4d\framework.hpp
+1464557107 c:\users\sebi\documents\4dstuff\github\4d\4d\framework.hpp
 	"SFML\Graphics.hpp"
+	"SFML\Window.hpp"
 	<iostream>
 	"ourVectors.hpp"
 	"Element.hpp"
@@ -1535,12 +1536,12 @@
 	<string>
 	<vector>
 
-1464026663 c:\users\sebi\documents\4dstuff\github\4d\4d\element.hpp
+1464558066 c:\users\sebi\documents\4dstuff\github\4d\4d\element.hpp
 	<iostream>
+	"SFML\System.hpp"
 
-1464429401 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
+1464558733 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
 	<vector>
-	"Element.hpp"
 	"Cuboid.hpp"
 	"Observer.hpp"
 
@@ -1553,23 +1554,23 @@
 1464171472 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
 	"Object.hpp"
 
-1464423718 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
+1464557948 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
 	"element.hpp"
 	"ourVectors.hpp"
 
-1464441374 source:c:\users\sebi\documents\4dstuff\github\4d\4d\world.cpp
+1464550687 source:c:\users\sebi\documents\4dstuff\github\4d\4d\world.cpp
 	"stdafx.h"
 	"World.hpp"
 	<iostream>
 	<vector>
 
-1464425635 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
+1464557948 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
 	"SFML\Graphics.hpp"
 	<vector>
 	"ourVectors.hpp"
 	"Cuboid.hpp"
 
-1464425635 c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.hpp
+1464557948 c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.hpp
 	"SFML\Graphics.hpp"
 	<vector>
 	"Object.hpp"
@@ -1581,17 +1582,24 @@
 	<vector>
 	"ourVectors.hpp"
 
-1464441277 c:\users\sebi\documents\4dstuff\github\4d\4d\ourvectors.hpp
+1464547585 c:\users\sebi\documents\4dstuff\github\4d\4d\ourvectors.hpp
 	<iostream>
 	<vector>
 	<stdexcept>
 	<initializer_list>
 	"SFML\Graphics.hpp"
 
-1464441913 c:\users\sebi\documents\4dstuff\github\4d\4d\observer.hpp
+1464550617 c:\users\sebi\documents\4dstuff\github\4d\4d\observer.hpp
 	"ourVectors.hpp"
-	"our4DMatrices.hpp"
+	"ourMatrices.hpp"
 
-1464429277 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
+1464555650 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
 	"Observer.hpp"
+
+1464547585 c:\users\sebi\documents\4dstuff\github\4d\4d\ourmatrices.hpp
+	"SFML\Graphics.hpp"
+	<iostream>
+	<vector>
+	<initializer_list>
+	"ourVectors.hpp"
 

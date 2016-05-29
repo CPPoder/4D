@@ -21,7 +21,7 @@ public:
     std::vector<sf::VertexArray> getEdges();
 
     void handleEvents() override;
-    void update() override;
+    void update(sf::Time &elapsed) override;
     void render() override;
 
     fd::Vector4f getPosition();

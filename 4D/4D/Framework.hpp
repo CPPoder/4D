@@ -2,6 +2,7 @@
 #define FRAMEWORK_HPP
 
 #include "SFML\Graphics.hpp"
+#include "SFML\Window.hpp"
 
 #include <iostream>
 
@@ -16,11 +17,14 @@ class Framework
 {
 private:
 	sf::RenderWindow *pRenderWindow;
-	World *pWorld;
+	sf::Clock clock;
+	World mWorld;
+
 
 	void handleEvents();
 	void update();
 	void render();
+	void readKeyboard();
 
 
 public:

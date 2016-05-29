@@ -29,7 +29,7 @@ void Cuboid::render()
 
 }
 
-void Cuboid::update()
+void Cuboid::update(sf::Time &elapsed)
 {
 
 }
