@@ -24,7 +24,6 @@ namespace fd
 		std::vector<std::vector<T>> matrix;
 
 
-
 	public:
 		//////////////
 		//Constructors
