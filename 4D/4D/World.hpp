@@ -20,21 +20,14 @@ private:
     Observer observer;
 
     //Variables controlling the sensitivity of the controlling
-    float alpha;
+    float mAlpha;
 
     //Variables encoding the controlling
 
 
 public:
 
-    bool mMoveViewA;
-    bool mMoveViewD;
-    bool mMoveViewW;
-    bool mMoveViewS;
-    bool mMoveViewY;
-    bool mMoveViewX;
-    bool mAccelerate;
-    bool mDecelerate;
+
 
     World();
     ~World();
@@ -42,6 +35,19 @@ public:
     void handleEvents();
     void update(sf::Time &elapsed) ;
     void render();
+
+    void moveViewA();
+    void moveViewD();
+    void stopMoveAD();
+    void moveViewW();
+    void moveViewS();
+    void stopMoveWS();
+    void moveViewX();
+    void moveViewY();
+    void stopMoveXY();
+    void moveForward();
+    void moveBackward();
+    void stopMoveFB();
 
 
 

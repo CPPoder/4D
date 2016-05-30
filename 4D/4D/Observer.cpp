@@ -1,7 +1,7 @@
 #include "Observer.hpp"
 float const pi = 3.141592653f;
 
-
+//constructor
 Observer::Observer()
     : mPosition(0.0f), mView(0.0f)
 {
@@ -15,9 +15,32 @@ Observer::Observer()
     std::cout << mView.at(2,2) << " " <<  mView.at(2,3) << " " << mView.at(3,2) << " " << mView.at(3,3) << std::endl;
 }
 
+//Destructor
 Observer::~Observer()
 {
 
+}
+
+//Moving the observer through space, rotations
+void Observer::update(sf::Time &elapsed, float sensitivity)
+{   //The signs have to be checked!!
+    fd::Vector4f vInStandardBasis({0,0,0,1});
+    if (mMoveAD != 0)
+    {
+        rotationX1(mMoveAD*sensitivity*elapsed.asSeconds());
+    }
+    if (mMoveWS != 0)
+    {
+        rotationX2(-mMoveWS*sensitivity*elapsed.asSeconds());
+    }
+    if (mMoveXY != 0)
+    {
+        rotationY(mMoveXY*sensitivity*elapsed.asSeconds());
+    }
+    if (mMoveFB != 0)
+    {
+        //mPosition = mPosition + elapsed.asSeconds()*mView*vInStandardBasis;
+    }
 }
 //Rotation of v in towards x1-axis (leaves x2, y invariant)
 void Observer::rotationX1(float phi)

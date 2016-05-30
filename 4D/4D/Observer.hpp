@@ -11,21 +11,21 @@ private:
 
 public:
 
+    int mMoveAD;
+    int mMoveWS;
+    int mMoveXY;
+    int mMoveFB;
+
     Observer();
     ~Observer();
 
-    void update();
+    void update(sf::Time &elapsed, float sensitivity);
 
     void rotationX1(float phi);
     void rotationX2(float phi);
     void rotationY(float phi);
 
 };
-
-
-
-
-
 
 
 #endif // OBSERVER_HPP

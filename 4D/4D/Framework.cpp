@@ -48,25 +48,62 @@ void Framework::render()
 //A - D (left - right): x1
 //W - S (up - down): x2
 //X - Y ( ??    ) : y
-//Up - Down (accelerate, decelerate) : d/dt v
+//Up - Down (move forward - move backwards) : v
 
 //Read out the input given by pressing keys on the keyboard
 void Framework::readKeyboard()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        mWorld.mMoveViewA = true;
-        mWorld.mMoveViewD = false;
+        mWorld.moveViewA();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        mWorld.mMoveViewD = true;
-        mWorld.mMoveViewA = false;
+        mWorld.moveViewD();
+    }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        mWorld.stopMoveAD();
     }
 
-    //To be continued!
-    //Should be easy to simplify: Introduce a structure with the eight keys and the possibility to iterate them
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        mWorld.moveViewW();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        mWorld.moveViewS();
+    }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        mWorld.stopMoveWS();
+    }
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
+    {
+        mWorld.moveViewX();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    {
+        mWorld.moveViewY();
+    }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Y) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    {
+        mWorld.stopMoveXY();
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        mWorld.moveForward();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        mWorld.moveBackward();
+    }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        mWorld.stopMoveFB();
+    }
 }
 
 
