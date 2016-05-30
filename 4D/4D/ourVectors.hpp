@@ -393,9 +393,9 @@ template <typename T, unsigned int dim> void outputOnTerminal(Vector<T, dim> con
 	std::cout << outputDescription;
 	for (unsigned int pos = 0; pos < (dim - 1); pos++)
 	{
-		std::cout << vec.at(pos) << separator;
+		std::cout << vec.getValueAt(pos) << separator;
 	}
-	std::cout << vec.at(dim - 1) << std::endl;
+	std::cout << vec.getValueAt(dim - 1) << std::endl;
 }
 
 

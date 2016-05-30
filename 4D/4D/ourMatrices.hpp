@@ -7,6 +7,8 @@
 #include <vector>
 #include <initializer_list>
 
+#include "myUsefulMath.hpp"
+
 #include "ourVectors.hpp"
 
 namespace fd
@@ -55,7 +57,7 @@ namespace fd
 			}
 		}
 
-		//Constructor from initiallizer list (Throws an exception std::length_error for unvalid initializer_list sizes)
+		//Constructor from initiallizer list (Throws an exception std::length_error for invalid initializer_list sizes)
 		explicit Matrix(std::initializer_list<std::initializer_list<T>> const & initList)
 			: Matrix()
 		{
@@ -120,6 +122,88 @@ namespace fd
 		T getValueAt(unsigned int row, unsigned int column) const
 		{
 			return matrix.at(row).at(column);
+		}
+
+		//Get size
+		Vector2u getSize() const
+		{
+			Vector2u out;
+			out.at(0) = m;
+			out.at(1) = n;
+			return out;
+		}
+
+		//Get column (Throws an exception for invalid column numbers)
+		Vector<T, m> getColumn(unsigned int column) const
+		{
+			if (column >= n)
+			{
+				throw "Matrix::getColumn(unsigned int) : Column number is incompatible with matrix size!";
+			}
+			Vector<T, m> result;
+			for (unsigned int i = 0; i < m; i++)
+			{
+				result.at(i) = getValueAt(i, column);
+			}
+			return result;
+		}
+
+		//Get row (Throws an exception for invalid row numbers)
+		Vector<T, n> getRow(unsigned int row) const
+		{
+			if (row >= m)
+			{
+				throw "Matrix::getRow(unsigned int) : Row number is incompatible with matrix size!";
+			}
+			Vector<T, n> result;
+			for (unsigned int j = 0; j < n; j++)
+			{
+				result.at(j) = getValueAt(row, j);
+			}
+			return result;
+		}
+
+		//Get a submatrix with origin and size (Throws an exception for invalid origins and sizes)
+		template <unsigned int rowNumber, unsigned int colNumber> Matrix<T, rowNumber, colNumber> getSubMatrix(unsigned int originRow, unsigned int originCol) const
+		{
+			if (((originRow + rowNumber) > m) || ((originCol + colNumber) > n))
+			{
+				throw "Matrix::getSubMatrix(unsigned int, unsigned int, unsigned int, unsigned int) : Sub matrix is incompatible with matrix size!";
+			}
+			Matrix<T, rowNumber, colNumber> result;
+			for (unsigned int i = 0; i < rowNumber; i++)
+			{
+				for (unsigned int j = 0; j < colNumber; j++)
+				{
+					result.at(i, j) = getValueAt(originRow + i, originCol + j);
+				}
+			}
+			return result;
+		}
+
+		//Get the transposed matrix without changing this
+		Matrix<T, n, m> getTransposed() const
+		{
+			Matrix<T, n, m> transposed;
+			for (unsigned int i = 0; i < n; i++)
+			{
+				for (unsigned int j = 0; j < m; j++)
+				{
+					transposed.at(i, j) = getValueAt(j, i);
+				}
+			}
+			return transposed;
+		}
+
+		//Calculates the trace of this
+		T trace() const
+		{
+			T trace = 0;
+			for (unsigned int i = 0; i < myMath::min(m, n); i++)
+			{
+				trace = trace + getValueAt(i, i);
+			}
+			return trace;
 		}
 
 		//Output on terminal
@@ -403,6 +487,26 @@ namespace fd
 	}
 
 
+	/////////////////////////////////////
+	//Matrix and Vector mixing operations
+
+	//Matrix times Vector
+	template <typename T, unsigned int m, unsigned int n> Vector<T, m> operator* (Matrix<T, m, n> const & mat, Vector<T, n> const & vec)
+	{
+		Vector<T, m> result;
+		for (unsigned int i = 0; i < m; i++)
+		{
+			T entry(0);
+			for (unsigned int j = 0; j < n; j++)
+			{
+				entry = entry + (mat.getValueAt(i, j) * vec.getValueAt(j));
+			}
+			result.at(i) = entry;
+		}
+		return result;
+	}
+
+
 	//////////////////////////////////////////
 	//Function templates : Helpful functions
 
@@ -484,3 +588,5 @@ typedef Matrix<float, 4, 4> Matrix44f;
 
 
 #endif
+
+
