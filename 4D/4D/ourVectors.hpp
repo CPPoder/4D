@@ -11,8 +11,8 @@
 
 namespace fd
 {
-	////////////////////////
-	//Class Template Vector4
+	///////////////////////
+	//Class Template Vector
 	template <typename T, unsigned int dimension> class Vector
 	{
 	private:
@@ -74,9 +74,6 @@ namespace fd
 			}
 		}
 
-		//Constructor from sf::Vectors
-
-
 
 		////////////////////////
 		//Public Memberfunctions
@@ -104,7 +101,7 @@ namespace fd
 			std::cout << vector.at(dimension - 1) << std::endl;
 		}
 
-	};
+	};	
 
 
 ////////////////////////////////////////
@@ -384,7 +381,7 @@ template<typename T> Vector<T, 3> crossProduct(Vector<T, 3> const & vec1, Vector
 }
 
 
-//////////////////////////////////////////
+////////////////////////////////////////
 //Function templates : Helpful functions
 
 //Output on terminal
@@ -396,6 +393,37 @@ template <typename T, unsigned int dim> void outputOnTerminal(Vector<T, dim> con
 		std::cout << vec.getValueAt(pos) << separator;
 	}
 	std::cout << vec.getValueAt(dim - 1) << std::endl;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+//Function templates : Bijective Homos between sf::Vector and fd::Vector
+
+//Canonical maps from sf::Vector to fd::Vector
+template <typename T> fd::Vector<T, 2> createFdFromSfVector(sf::Vector2<T> const & sfVector)
+{
+	fd::Vector<T, 2> result;
+	result.at(0) = sfVector.x;
+	result.at(1) = sfVector.y;
+	return result;
+}
+template <typename T> fd::Vector<T, 3> createFdFromSfVector(sf::Vector3<T> const & sfVector)
+{
+	fd::Vector<T, 3> result;
+	result.at(0) = sfVector.x;
+	result.at(1) = sfVector.y;
+	result.at(2) = sfVector.z;
+	return result;
+}
+
+//Canonical maps from fd::Vector to sf::Vector
+template <typename T> sf::Vector2<T> createSfFromFdVector(fd::Vector<T, 2> const & fdVector)
+{
+	return sf::Vector2<T>(fdVector.getValueAt(0), fdVector.getValueAt(1));
+}
+template <typename T> sf::Vector3<T> createSfFromFdVector(fd::Vector<T, 3> const & fdVector)
+{
+	return sf::Vector3<T>(fdVector.getValueAt(0), fdVector.getValueAt(1), fdVector.getValueAt(2));
 }
 
 
