@@ -16,7 +16,7 @@ Object::~Object()
 fd::Vector4f Object::transfromToObserversView(fd::Vector4f const &positionObserver, fd::Matrix44f const &viewObserver, fd::Vector4f const &point)
 {
     fd::Vector4f result;
-//    result = viewObserver*(point - positionObserver);
+    result = viewObserver*(point - positionObserver);
     return(result);
 }
 
@@ -32,7 +32,7 @@ fd::Vector2f Object::parallelProjection(fd::Vector4f pointIn)
     projectionMatrix.at(1,3) = -0.5f;
 
     fd::Vector2f result;
-//    result = projectionMatrix*pointIn;
+    result = projectionMatrix*pointIn;
     return(result);
 
 }

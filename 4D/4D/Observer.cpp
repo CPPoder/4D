@@ -39,7 +39,7 @@ void Observer::update(sf::Time &elapsed, float sensitivity)
     }
     if (mMoveFB != 0)
     {
-        //mPosition = mPosition + elapsed.asSeconds()*mView*vInStandardBasis;
+        mPosition = mPosition + elapsed.asSeconds()*mView*vInStandardBasis;
     }
 }
 //Rotation of v in towards x1-axis (leaves x2, y invariant)

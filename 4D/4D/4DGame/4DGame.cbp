@@ -111,6 +111,8 @@
 		<Unit filename="../World.cpp" />
 		<Unit filename="../World.hpp" />
 		<Unit filename="../main.cpp" />
+		<Unit filename="../myUsefulMath.cpp" />
+		<Unit filename="../myUsefulMath.hpp" />
 		<Unit filename="../ourMatrices.hpp" />
 		<Unit filename="../ourVectors.hpp" />
 		<Unit filename="../stdafx.cpp" />

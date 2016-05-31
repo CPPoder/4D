@@ -78,7 +78,7 @@ namespace myMath {
 		return ((num1 + num2) / 2.f);
 	}
 
-	
+
 	int myMath::randIntervali(int small, int big)
 	{
 		return (rand() % (big - small + 1) + small);
