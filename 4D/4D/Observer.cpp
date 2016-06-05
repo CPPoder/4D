@@ -43,7 +43,7 @@ void Observer::update(sf::Time &elapsed, float sensitivity)
     }
     if (mMoveFB != 0)
     {
-        mPosition = mPosition + elapsed.asSeconds()*mView*vInStandardBasis;
+        mPosition = mPosition + elapsed.asSeconds()*10.f*mView*vInStandardBasis;
     }
 }
 
@@ -63,7 +63,7 @@ fd::Vector4f* Observer::getMPosition()
 
 void Observer::render() //For debugging
 {
-    std::cout << "mMoveAD and so on: " << mMoveAD << "," << mMoveFB << "," << mMoveWS << "," << mMoveFB << std::endl;
+
 }
 
 //Rotation of v in towards x1-axis (leaves x2, y invariant)

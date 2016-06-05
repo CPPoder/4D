@@ -43,7 +43,7 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
     sf::VertexArray tEdges(sf::Lines, 64);
     int counter = 0;
     int index;
-    std::cout << "mView: " << view->at(0,0) << view->at(0,1) << std::endl;
+    std::cout << "mView: " << view->at(0,0) << "," << view->at(0,1) << "," << view->at(1,1) << "," << view->at(2,1) << "," << view->at(3,1) << std::endl;
     //Write the edges in x1 direction
     for(int a2 = 0; a2 < 2; a2 ++)
     {
@@ -52,10 +52,10 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             for(int a4 = 0; a4 < 2; a4 ++)
             {
                 index = 4*a2 + 2*a3 + a4;
-                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(0));
+                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
                 counter += 1;
                 index += 8;
-                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(0));
+                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
                 counter += 1;
             }
         }
@@ -69,10 +69,10 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             for(int a4 = 0; a4 < 2; a4 ++)
             {
                 index = 8*a1 + 2*a3 + a4;
-                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(0));
+                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
                 counter += 1;
                 index += 4;
-                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(0));
+                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
                 counter += 1;
             }
         }
@@ -86,10 +86,10 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             for(int a4 = 0; a4 < 2; a4 ++)
             {
                 index = 8*a1 + 4*a2 + a4;
-                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(0));
+                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
                 counter += 1;
                 index += 2;
-                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(0));
+                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
                 counter += 1;
             }
         }
@@ -103,15 +103,14 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             for(int a3 = 0; a3 < 2; a3 ++)
             {
                 index = 8*a1 + 4*a2 + 2*a3;
-                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(0));
+                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
                 counter += 1;
                 index += 1;
-                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(0));
+                tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
                 counter += 1;
             }
         }
     }
-    std::cout << "Number of edges written: " << counter << std::endl;
     (*pRenderWindow).draw(tEdges);
 
 }

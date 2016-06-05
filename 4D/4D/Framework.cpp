@@ -20,6 +20,7 @@ Framework::~Framework()
 //HandleEvents, Update, Render
 void Framework::handleEvents()
 {
+    readKeyboard();
 	sf::Event mEvent;
 	while (pRenderWindow->pollEvent(mEvent))
 	{
@@ -53,6 +54,12 @@ void Framework::render()
 //Read out the input given by pressing keys on the keyboard
 void Framework::readKeyboard()
 {
+    //Debugging
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    {
+        std::cout << "A is pressed alone" << std::endl;
+    }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         mWorld.moveViewA();

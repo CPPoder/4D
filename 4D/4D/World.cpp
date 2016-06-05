@@ -5,7 +5,7 @@
 
 //Constructor
 World::World()
-    : mObserver(), mAlpha(0.1f)
+    : mObserver(), mAlpha(1.f)
 {
     //Size of the world
     //Default standard while developing
@@ -17,7 +17,7 @@ World::World()
     //Construct a simple cuboid
     std::vector<float> mTemp (4, 10.f);
     fd::Vector4f mTemp4f(mTemp);
-    mCuboids.push_back(Cuboid(mTemp4f, mTemp4f));
+    mCuboids.push_back(Cuboid(mTemp4f, 10.f*mTemp4f));
 
 
 }
