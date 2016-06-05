@@ -7,7 +7,7 @@ float const pi = 3.141592653f;
 
 //constructor
 Observer::Observer()
-    : mPosition(0.0f), mView(0.0f)
+    : mPosition(0.0f), mView(0.0f), mMoveAD(0), mMoveFB(0), mMoveWS(0), mMoveXY(0)
 {
     //Set diagonal elements to 1 --> unity matrix
     for(int i = 0; i < 4; i++)
