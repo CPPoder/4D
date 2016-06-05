@@ -24,6 +24,8 @@ public:
     fd::Matrix44f* getMView();
     fd::Vector4f* getMPosition();
 
+    void render();
+
     void rotationX1(float phi);
     void rotationX2(float phi);
     void rotationY(float phi);
