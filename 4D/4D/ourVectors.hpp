@@ -244,6 +244,17 @@ template <typename T, unsigned int dim> T operator* (Vector<T, dim> const & vec1
 	return result;
 }
 
+//Componentwise Multiplication
+template <typename T, unsigned int dim> Vector<T, dim> componentwiseMultiplication(Vector<T, dim> const & vec1, Vector<T, dim> const & vec2)
+{
+	Vector<T, dim> result;
+	for (unsigned int pos = 0; pos < dim; pos++)
+	{
+		result.at(pos) = vec1.getValueAt(pos) * vec2.getValueAt(pos);
+	}
+	return result;
+}
+
 
 //////////////////////////////////////////
 //Function templates : Combined operations
