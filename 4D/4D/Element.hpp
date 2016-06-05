@@ -18,7 +18,7 @@ public:
 
 	virtual void handleEvents() = 0;
 	virtual void update(sf::Time &elapsed) = 0;
-	virtual void render(fd::Matrix44f *view, fd::Vector4f *position) = 0;
+	virtual void render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position) = 0;
 
 };
 

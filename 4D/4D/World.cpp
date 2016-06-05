@@ -5,7 +5,7 @@
 
 //Constructor
 World::World()
-    : observer(), mAlpha(0.1f)
+    : mObserver(), mAlpha(0.1f)
 {
     //Size of the world
     //Default standard while developing
@@ -38,16 +38,19 @@ void World::handleEvents()
 //Add possibility of objects moving around
 void World::update(sf::Time &elapsed)
 {
-     observer.update(elapsed, mAlpha);
+     mObserver.update(elapsed, mAlpha);
      //objects --> update
 }
 
 void World::render(sf::RenderWindow *pRenderWindow)
 {
     //Iterate over the objects and call their render functions
+    fd::Matrix44f* fView = mObserver.getMView();
+    fd::Vector4f* fPosition = mObserver.getMPosition();
+
     for (Cuboid cCuboid : mCuboids)
     {
-        //cCuboid.render(pRenderWindow)
+        cCuboid.render(pRenderWindow, fView, fPosition);
     }
 }
 
@@ -55,57 +58,57 @@ void World::render(sf::RenderWindow *pRenderWindow)
 //Block A -- D
 void World::moveViewA()
 {
-    observer.mMoveAD = 1;
+    mObserver.mMoveAD = 1;
 }
 void World::moveViewD()
 {
-    observer.mMoveAD = -1;
+    mObserver.mMoveAD = -1;
 }
 void World::stopMoveAD()
 {
-    observer.mMoveAD = 0;
+    mObserver.mMoveAD = 0;
 }
 
 //Block W -- S
 void World::moveViewW()
 {
-    observer.mMoveWS = 1;
+    mObserver.mMoveWS = 1;
 }
 void World::moveViewS()
 {
-    observer.mMoveWS = -1;
+    mObserver.mMoveWS = -1;
 }
 void World::stopMoveWS()
 {
-    observer.mMoveWS = 0;
+    mObserver.mMoveWS = 0;
 }
 
 //Block x -- Y
 void World::moveViewX()
 {
-    observer.mMoveXY = 1;
+    mObserver.mMoveXY = 1;
 }
 void World::moveViewY()
 {
-    observer.mMoveXY = -1;
+    mObserver.mMoveXY = -1;
 }
 void World::stopMoveXY()
 {
-    observer.mMoveXY = 0;
+    mObserver.mMoveXY = 0;
 }
 
 //Block Forward -- Backward
 void World::moveForward()
 {
-    observer.mMoveFB = 1;
+    mObserver.mMoveFB = 1;
 }
 void World::moveBackward()
 {
-    observer.mMoveFB = -1;
+    mObserver.mMoveFB = -1;
 }
 void World::stopMoveFB()
 {
-    observer.mMoveFB = 0;
+    mObserver.mMoveFB = 0;
 }
 
 

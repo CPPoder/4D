@@ -17,7 +17,7 @@ private:
 
 
     //The observer
-    Observer observer;
+    Observer mObserver;
 
     //Variables controlling the sensitivity of the controlling
     float mAlpha;

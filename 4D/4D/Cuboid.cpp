@@ -27,7 +27,7 @@ void Cuboid::handleEvents()
 
 }
 
-void Cuboid::render(fd::Matrix44f *view, fd::Vector4f *position)
+void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position)
 {
     //Part 1: Compute the coordinates of the corners in observers coordinates
     //The order is given by: start with the edge at the position vector, then add the diagonal componentwise wrt the schema 0000, 0001, 0010, ..., 1111
@@ -42,7 +42,7 @@ void Cuboid::render(fd::Matrix44f *view, fd::Vector4f *position)
     sf::VertexArray tEdges(sf::Lines, 64);
     int counter = 0;
     int index;
-
+    std::cout << "mView: " << view->at(0,0) << view->at(0,1) << std::endl;
     //Write the edges in x1 direction
     for(int a2 = 0; a2 < 2; a2 ++)
     {
@@ -111,6 +111,7 @@ void Cuboid::render(fd::Matrix44f *view, fd::Vector4f *position)
         }
     }
     std::cout << "Number of edges written: " << counter << std::endl;
+    (*pRenderWindow).draw(tEdges);
 
 }
 
