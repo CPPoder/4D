@@ -21,6 +21,9 @@ public:
 
     void update(sf::Time &elapsed, float sensitivity);
 
+    fd::Matrix44f* getMView();
+    fd::Vector4f* getMPosition();
+
     void rotationX1(float phi);
     void rotationX2(float phi);
     void rotationY(float phi);

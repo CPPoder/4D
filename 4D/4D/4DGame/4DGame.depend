@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1464615646 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
+1465156089 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
 	"stdafx.h"
 	"Framework.hpp"
 
@@ -1537,11 +1537,13 @@
 	<string>
 	<vector>
 
-1464558066 c:\users\sebi\documents\4dstuff\github\4d\4d\element.hpp
+1465154077 c:\users\sebi\documents\4dstuff\github\4d\4d\element.hpp
 	<iostream>
 	"SFML\System.hpp"
+	"ourMatrices.hpp"
+	"ourVectors.hpp"
 
-1464615329 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
+1465156223 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
 	<vector>
 	"Cuboid.hpp"
 	"Observer.hpp"
@@ -1552,10 +1554,13 @@
 
 1464164154 c:\users\sebi\documents\4dstuff\github\4d\4d\our4dvectors.hpp
 
-1464171472 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
+1465153787 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
 	"Object.hpp"
+	"ourMatrices.hpp"
+	"ourVectors.hpp"
+	<algorithm>
 
-1464619226 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
+1465154077 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
 	"element.hpp"
 	"ourVectors.hpp"
 	"ourMatrices.hpp"
@@ -1566,13 +1571,13 @@
 	<iostream>
 	<vector>
 
-1464618357 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
+1465155407 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
 	"SFML\Graphics.hpp"
 	<vector>
 	"ourVectors.hpp"
 	"Cuboid.hpp"
 
-1464557948 c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.hpp
+1465154077 c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.hpp
 	"SFML\Graphics.hpp"
 	<vector>
 	"Object.hpp"
@@ -1584,21 +1589,23 @@
 	<vector>
 	"ourVectors.hpp"
 
-1464641621 c:\users\sebi\documents\4dstuff\github\4d\4d\ourvectors.hpp
+1464674615 c:\users\sebi\documents\4dstuff\github\4d\4d\ourvectors.hpp
 	<iostream>
 	<vector>
 	<stdexcept>
 	<initializer_list>
 	"SFML\Graphics.hpp"
 
-1464617656 c:\users\sebi\documents\4dstuff\github\4d\4d\observer.hpp
+1465153398 c:\users\sebi\documents\4dstuff\github\4d\4d\observer.hpp
 	"ourVectors.hpp"
 	"ourMatrices.hpp"
 
-1464616949 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
+1465153387 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
 	"Observer.hpp"
+	"ourMatrices.hpp"
+	"ourVectors.hpp"
 
-1464641621 c:\users\sebi\documents\4dstuff\github\4d\4d\ourmatrices.hpp
+1464674615 c:\users\sebi\documents\4dstuff\github\4d\4d\ourmatrices.hpp
 	"SFML\Graphics.hpp"
 	<iostream>
 	<vector>
@@ -1607,4 +1614,9 @@
 	"ourVectors.hpp"
 
 1464641621 c:\users\sebi\documents\4dstuff\github\4d\4d\myusefulmath.hpp
+
+1464788305 source:c:\users\sebi\documents\4dstuff\github\4d\4d\myusefulmath.cpp
+	"stdafx.h"
+	"myUsefulMath.hpp"
+	<cstdlib>
 

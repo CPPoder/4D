@@ -116,6 +116,8 @@ Describes the position and orientation of the observer in space. Position is enc
 
 \section{Idea of the 4D projection and controlling}
 
+\subsection{Projection}
+
 Observer has the variable fd::Vector4f mView which describes the transformation from observer coordinates ($S'$) to standard coordinates ($S$):
 
 \begin{equation}
@@ -184,6 +186,26 @@ R_{y}(\phi) = \begin{array}{cccc}
 0 & 0 & -\sin(\phi) & \cos(\phi)
 \end{array} 
 \end{equation}.
+
+As the projection performed goes from 4D to 2D, there are two axes orthogonal to the plane projected onto. 
+
+It is assumed, that a point is visible, if its coordinates in both $x_3$ and $x_4$ are positive. (The situation can be visualized by using a 2D coordinate system - a point is visible iaof it lies in the I. quadrant.)
+
+To correctly handle an edge which is bounded by two points, one has to use an algorithm to find the visible part of the edge. 
+
+A) Both points are visible --> the whole edge is visible as the visible part is convex
+
+B) One point is visible ($\vec{x}$), the other one not ($\vec{y}$)$\rightarrow$
+Define $t^1 = \frac{x^1}{x^1 - y^1}, t^2 = \frac{x^2}{x^2 - y^2}$ and set $ t = \min(t^1, t^2), \vec{z} = (1 - t) \vec{x} + t \vec{y}$.
+
+--> The new edge is given by $[\vec{x}, \vec{z}]$.
+
+C) Both points are invisible
+1) $\vec{x}, \vec{y}$ lie in the II. / IV. quadrant disjointly (each one of them in another quadrant)
+
+Define $t^1 = \frac{x^1}{x^1 - y^1}, t^2 = \frac{x^2}{x^2 - y^2}$. If $x^1 (t^1 - t^2) > 0 \rightarrow $ the intervall $[(1 - t^1) \vec{x} + t^1 \vec{y}, (1 - t^2) \vec{x} + t^2 \vec{y}]$ is visible, else nothing is visible. 
+
+\subsection{Controlling}
 
 Controlling is done by using the keys W, A, S, D, X and Y for rotation the direction in which the observer looks and using Up and Down (right hand) for moving in direction of v forwards or backwards. 
 

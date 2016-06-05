@@ -40,7 +40,7 @@ void Framework::update()
 void Framework::render()
 {
 	pRenderWindow->clear();
-	//pRenderWindow->draw();
+	mWorld.render(pRenderWindow);
 	pRenderWindow->display();
 }
 

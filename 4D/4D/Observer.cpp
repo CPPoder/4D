@@ -1,4 +1,7 @@
 #include "Observer.hpp"
+#include "ourMatrices.hpp"
+#include "ourVectors.hpp"
+
 float const pi = 3.141592653f;
 
 //constructor
@@ -42,6 +45,22 @@ void Observer::update(sf::Time &elapsed, float sensitivity)
         mPosition = mPosition + elapsed.asSeconds()*mView*vInStandardBasis;
     }
 }
+
+//Returns the current view matrix
+fd::Matrix44f* Observer::getMView()
+{
+    fd::Matrix44f *view = &mView;
+    return(view);
+}
+
+//Returns the current position
+fd::Vector4f* Observer::getMPosition()
+{
+    fd::Vector4f *position = &mPosition;
+    return(position);
+}
+
+
 //Rotation of v in towards x1-axis (leaves x2, y invariant)
 void Observer::rotationX1(float phi)
 {

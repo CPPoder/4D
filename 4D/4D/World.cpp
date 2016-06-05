@@ -42,9 +42,13 @@ void World::update(sf::Time &elapsed)
      //objects --> update
 }
 
-void World::render()
+void World::render(sf::RenderWindow *pRenderWindow)
 {
-
+    //Iterate over the objects and call their render functions
+    for (Cuboid cCuboid : mCuboids)
+    {
+        //cCuboid.render(pRenderWindow)
+    }
 }
 
 //Hand detected moves of the observer to the observer object

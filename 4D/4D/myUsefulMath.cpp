@@ -4,7 +4,7 @@
 
 namespace myMath {
 
-	float myMath::max(float num1, float num2)
+	float max(float num1, float num2)
 	{
 		if (num1 > num2)
 		{
@@ -15,7 +15,7 @@ namespace myMath {
 			return num2;
 		}
 	}
-	int myMath::max(int num1, int num2)
+	int max(int num1, int num2)
 	{
 		if (num1 > num2)
 		{
@@ -26,7 +26,7 @@ namespace myMath {
 			return num2;
 		}
 	}
-	unsigned int myMath::max(unsigned int num1, unsigned int num2)
+	unsigned int max(unsigned int num1, unsigned int num2)
 	{
 		if (num1 > num2)
 		{
@@ -38,7 +38,7 @@ namespace myMath {
 		}
 	}
 
-	float myMath::min(float num1, float num2)
+	float min(float num1, float num2)
 	{
 		if (num1 > num2)
 		{
@@ -49,7 +49,7 @@ namespace myMath {
 			return num1;
 		}
 	}
-	int myMath::min(int num1, int num2)
+	int min(int num1, int num2)
 	{
 		if (num1 > num2)
 		{
@@ -60,7 +60,7 @@ namespace myMath {
 			return num1;
 		}
 	}
-	unsigned int myMath::min(unsigned int num1, unsigned int num2)
+	unsigned int min(unsigned int num1, unsigned int num2)
 	{
 		if (num1 > num2)
 		{
@@ -73,23 +73,23 @@ namespace myMath {
 	}
 
 
-	float myMath::meanValue(float num1, float num2)
+	float meanValue(float num1, float num2)
 	{
 		return ((num1 + num2) / 2.f);
 	}
 
 
-	int myMath::randIntervali(int small, int big)
+	int randIntervali(int small, int big)
 	{
 		return (rand() % (big - small + 1) + small);
 	}
 
-	float myMath::randIntervalf(int small, int big)
+	float randIntervalf(int small, int big)
 	{
 		return static_cast<float>(myMath::randIntervali(small, big));
 	}
 
-	int myMath::abs(int value)
+	int abs(int value)
 	{
 		if (value < 0)
 		{
@@ -101,7 +101,7 @@ namespace myMath {
 		}
 	}
 
-	float myMath::abs(float value)
+	float abs(float value)
 	{
 		if (value < 0)
 		{
@@ -113,7 +113,7 @@ namespace myMath {
 		}
 	}
 
-	int myMath::sign(int value)
+	int sign(int value)
 	{
 		if (value < 0)
 		{
@@ -125,7 +125,7 @@ namespace myMath {
 		}
 	}
 
-	float myMath::sign(float value)
+	float sign(float value)
 	{
 		if (value < 0)
 		{
