@@ -53,6 +53,7 @@ void Framework::render()
 //Read out the input given by pressing keys on the keyboard
 void Framework::readKeyboard()
 {
+	//std::cout << "Debugging: " << sf::Keyboard::isKeyPressed(sf::Keyboard::A) << std::endl;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         mWorld.moveViewA();
@@ -113,6 +114,32 @@ void Framework::run()
 	while (pRenderWindow->isOpen())
 	{
 		handleEvents();
+		readKeyboard();
+		float speed = 3.f;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
+		{
+			sf::View view = pRenderWindow->getView();
+			view.move(sf::Vector2f(-speed, 0.f));
+			pRenderWindow->setView(view);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+		{
+			sf::View view = pRenderWindow->getView();
+			view.move(sf::Vector2f(speed, 0.f));
+			pRenderWindow->setView(view);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+		{
+			sf::View view = pRenderWindow->getView();
+			view.move(sf::Vector2f(0.f, -speed));
+			pRenderWindow->setView(view);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+		{
+			sf::View view = pRenderWindow->getView();
+			view.move(sf::Vector2f(0.f, speed));
+			pRenderWindow->setView(view);
+		}
 		update();
 		render();
 	}
