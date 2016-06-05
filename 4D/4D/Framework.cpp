@@ -120,7 +120,6 @@ void Framework::run()
 	while (pRenderWindow->isOpen())
 	{
 		handleEvents();
-		readKeyboard();
 		float speed = 3.f;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
 		{
