@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Object.hpp"
 #include "ourMatrices.hpp"
 #include "ourVectors.hpp"

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Observer.hpp"
 #include "ourMatrices.hpp"
 #include "ourVectors.hpp"
