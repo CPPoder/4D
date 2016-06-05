@@ -43,7 +43,7 @@ void Observer::update(sf::Time &elapsed, float sensitivity)
     }
     if (mMoveFB != 0)
     {
-        mPosition = mPosition + elapsed.asSeconds()*10.f*mView*vInStandardBasis;
+        mPosition = mPosition + mMoveFB*elapsed.asSeconds()*10.f*mView*vInStandardBasis;
     }
 }
 

@@ -33,9 +33,12 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
     //Part 1: Compute the coordinates of the corners in observers coordinates
     //The order is given by: start with the edge at the position vector, then add the diagonal componentwise wrt the schema 0000, 0001, 0010, ..., 1111
     fd::Vector2f mCornersProjected [16];
+    fd::Vector2f globalOffset;
+    globalOffset.at(0) = 720;
+    globalOffset.at(1) = 450;
     for(int i = 0; i < 16; i++)
     {
-        mCornersProjected[i] = parallelProjection(transfromToObserversView(position, view, mCorners[i]));
+        mCornersProjected[i] = parallelProjection(transfromToObserversView(position, view, mCorners[i])) + globalOffset;
     }
 
     //This function has to be optimized!!!!
