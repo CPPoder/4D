@@ -409,6 +409,20 @@ namespace fd
 		return result;
 	}
 
+	//Coponentwise Multiplication
+	template <typename T, unsigned int m, unsigned int n> Matrix<T, m, n> componentwiseMultiplication(Matrix<T, m, n> const & mat1, Matrix<T, m, n> const & mat2)
+	{
+		Matrix<T, m, n> result;
+		for (unsigned int i = 0; i < m; i++)
+		{
+			for (unsigned int j = 0; j < n; j++)
+			{
+				result.at(i, j) = mat1.getValueAt(i, j) * mat2.getValueAt(i, j);
+			}
+		}
+		return result;
+	}
+
 
 	//////////////////////////////////////////
 	//Function templates : Combined operations
