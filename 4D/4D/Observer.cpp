@@ -63,7 +63,7 @@ fd::Vector4f* Observer::getMPosition()
 
 void Observer::render() //For debugging
 {
-    printf(mMoveAD, mMoveFB, mMoveWS, mMoveFB);
+    std::cout << "mMoveAD and so on: " << mMoveAD << "," << mMoveFB << "," << mMoveWS << "," << mMoveFB << std::endl;
 }
 
 //Rotation of v in towards x1-axis (leaves x2, y invariant)

@@ -51,6 +51,7 @@ void World::render(sf::RenderWindow *pRenderWindow)
     for (Cuboid cCuboid : mCuboids)
     {
         cCuboid.render(pRenderWindow, fView, fPosition);
+        mObserver.render();
     }
 }
 
