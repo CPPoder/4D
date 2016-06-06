@@ -23,9 +23,9 @@ public:
 
     fd::Vector2f parallelProjection(fd::Vector4f pointIn);
 
-    unsigned int projectionColor1(fd::Vector4f pointIn, float colorDeepness);
+    unsigned int projectionColor1(float xIn, float colorDeepness);
 
-    unsigned int projectionColor2(fd::Vector4f pointIn,float colorDeepness);
+    unsigned int projectionColor2(float xIn,float colorDeepness);
 
     //Input: An edge, whose coordinates may be smaller than 0 in dim 3,4 --> they shall not be projected, as they are behind the observer
     //Output: Edge, which is the visible part of the input

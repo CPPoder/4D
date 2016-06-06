@@ -39,16 +39,16 @@ fd::Vector2f Object::parallelProjection(fd::Vector4f pointIn)
 
 }
 //Returns unsigned int in range 0 - 256 (adopted to rgb colors)
-//Points with high x3, x4 value get a high output
-unsigned int Object::projectionColor1(fd::Vector4f pointIn, float colorDeepness)
+//Points with high input value get a high output
+unsigned int Object::projectionColor1(float xIn, float colorDeepness)
 {
-    return(int(floor(1-exp(-colorDeepness*pointIn.at(2)))));
+    return(int(floor(1-exp(-colorDeepness*xIn))));
 }
 
 
-unsigned int Object::projectionColor2(fd::Vector4f pointIn, float colorDeepness)
+unsigned int Object::projectionColor2(float xIn, float colorDeepness)
 {
-    return(int(floor(1-exp(-colorDeepness*pointIn.at(3)))));
+    return(int(floor(1-exp(-colorDeepness*xIn))));
 }
 
 //Input: An edge, whose coordinates may be smaller than 0 in dim 3,4 --> they shall not be projected, as they are behind the observer
