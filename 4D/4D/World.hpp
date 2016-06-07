@@ -22,7 +22,11 @@ private:
     //Variables controlling the sensitivity of the controlling
     float mAlpha;
 
-    //Variables encoding the controlling
+    //Variable containing projection mode
+    bool parallelProjection;
+
+    //Variable controlling
+    bool restrictVisibility;
 
 
 public:
