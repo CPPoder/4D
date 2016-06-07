@@ -18,7 +18,7 @@ World::World()
     //Construct a simple cuboid
     std::vector<float> mTemp (4, 10.f);
     fd::Vector4f mTemp4f(mTemp);
-    mCuboids.push_back(Cuboid(mTemp4f, 10.f*mTemp4f));
+    mCuboids.push_back(Cuboid(mTemp4f, 15.f*mTemp4f));
 
 
 }
