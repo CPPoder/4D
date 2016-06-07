@@ -5,7 +5,7 @@
 
 //Constructor
 World::World()
-    : mObserver(), mAlpha(1.f)
+    : mObserver(), mAlpha(1.f), mColorDeepness(1.f)
 {
     //Size of the world
     //Default standard while developing
@@ -13,6 +13,7 @@ World::World()
     mSize2 = 100.f;
     mSize3 = 100.f;
     mSize4 = 100.f;
+
 
     //Construct a simple cuboid
     std::vector<float> mTemp (4, 10.f);
@@ -50,7 +51,7 @@ void World::render(sf::RenderWindow *pRenderWindow)
 
     for (Cuboid cCuboid : mCuboids)
     {
-        cCuboid.render(pRenderWindow, fView, fPosition);
+        cCuboid.render(pRenderWindow, fView, fPosition, mColorDeepness);
         mObserver.render();
     }
 }

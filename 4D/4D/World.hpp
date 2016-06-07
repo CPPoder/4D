@@ -22,11 +22,14 @@ private:
     //Variables controlling the sensitivity of the controlling
     float mAlpha;
 
+    //Variable controlling the coloring of the vertices
+    float mColorDeepness;
+
     //Variable containing projection mode
-    bool parallelProjection;
+    bool mParallelProjection;
 
     //Variable controlling
-    bool restrictVisibility;
+    bool mRestrictVisibility;
 
 
 public:

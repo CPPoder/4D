@@ -15,7 +15,7 @@ Object::~Object()
 }
 
 //Gets the observers position and mView matrix and calculates the coordinates of its own position in terms of the observers coordinates
-fd::Vector4f Object::transfromToObserversView(fd::Vector4f *positionObserver, fd::Matrix44f *viewObserver, fd::Vector4f point)
+fd::Vector4f Object::transformToObserversView(fd::Vector4f *positionObserver, fd::Matrix44f *viewObserver, fd::Vector4f point)
 {
     fd::Vector4f result;
     result = *viewObserver*(point - *positionObserver);
@@ -42,14 +42,14 @@ fd::Vector2f Object::parallelProjection(fd::Vector4f pointIn)
 //Points with high input value get a high output
 unsigned int Object::projectionColor1(float xIn, float colorDeepness)
 {
-    return(int(floor(1-exp(-colorDeepness*xIn))));
+    int result = int(floor(128*(1-exp(-colorDeepness*std::abs(xIn)))));
+    if (xIn < 0)
+    {
+        result = result*(-1);
+    }
+    return(result + 128);
 }
 
-
-unsigned int Object::projectionColor2(float xIn, float colorDeepness)
-{
-    return(int(floor(1-exp(-colorDeepness*xIn))));
-}
 
 //Input: An edge, whose coordinates may be smaller than 0 in dim 3,4 --> they shall not be projected, as they are behind the observer
 //Output: Edge, which is the visible part of the input (*visible in some sense, explained in the docs)
