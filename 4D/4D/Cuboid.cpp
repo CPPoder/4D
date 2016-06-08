@@ -73,11 +73,11 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             {
                 index = 4*a2 + 2*a3 + a4;
                 tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
-                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),100);
+                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),50);
                 counter += 1;
                 index += 8;
                 tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
-                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),100);
+                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),50);
                 counter += 1;
             }
         }
@@ -92,11 +92,11 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             {
                 index = 8*a1 + 2*a3 + a4;
                 tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
-                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),100);
+                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),50);
                 counter += 1;
                 index += 4;
                 tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
-                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),100);
+                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),50);
                 counter += 1;
             }
         }
@@ -111,11 +111,11 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             {
                 index = 8*a1 + 4*a2 + a4;
                 tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
-                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),100);
+                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),50);
                 counter += 1;
                 index += 2;
                 tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
-                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),100);
+                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),50);
                 counter += 1;
             }
         }
@@ -130,11 +130,11 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             {
                 index = 8*a1 + 4*a2 + 2*a3;
                 tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
-                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),100);
+                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),50);
                 counter += 1;
                 index += 1;
                 tEdges[counter].position = sf::Vector2f(mCornersProjected[index].at(0), mCornersProjected[index].at(1));
-                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),100);
+                tEdges[counter].color = sf::Color(mCornersColors[index].at(0), mCornersColors[index].at(1),50);
                 counter += 1;
             }
         }

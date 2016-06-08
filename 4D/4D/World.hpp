@@ -15,6 +15,9 @@ private:
     // Objects in the world
     std::vector<Cuboid> mCuboids;
 
+    // Icon indicating the coloring
+    //Object mCoordinateCross;
+
 
     //The observer
     Observer mObserver;

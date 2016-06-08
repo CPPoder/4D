@@ -15,7 +15,7 @@ Observer::Observer()
         mView.at(i,i) = 1.0f;
     }
     //Multiply by rotation to match the (x1, x2, y, v) system in stead of the (x1, x2, x3, x4)
-    rotationY(pi/4);
+    //rotationY(pi/4);
     std::cout << mView.at(2,2) << " " <<  mView.at(2,3) << " " << mView.at(3,2) << " " << mView.at(3,3) << std::endl;
 }
 
