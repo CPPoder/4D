@@ -54,12 +54,7 @@ void Framework::render()
 //Read out the input given by pressing keys on the keyboard
 void Framework::readKeyboard()
 {
-    //Debugging
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    {
-        std::cout << "A is pressed alone" << std::endl;
-    }
-
+    //Block A - D
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         mWorld.moveViewA();
@@ -73,6 +68,7 @@ void Framework::readKeyboard()
         mWorld.stopMoveAD();
     }
 
+    //Block W - S
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         mWorld.moveViewW();
@@ -86,6 +82,7 @@ void Framework::readKeyboard()
         mWorld.stopMoveWS();
     }
 
+    //Block X - Y
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
     {
         mWorld.moveViewX();
@@ -99,6 +96,7 @@ void Framework::readKeyboard()
         mWorld.stopMoveXY();
     }
 
+    //Block F - B
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         mWorld.moveForward();

@@ -40,7 +40,15 @@ fd::Vector2f Object::parallelProjection(fd::Vector4f pointIn)
 }
 //Returns unsigned int in range 0 - 256 (adopted to rgb colors)
 //Points with high input value get a high output
-unsigned int Object::projectionColor1(float xIn, float colorDeepness)
+sf::Color Object::projectionColor(fd::Vector4f xIn, float colorDeepness)
+{
+    sf::Color result(0, 0, 50, 255);
+    result.r = colorScaling(xIn.at(2), colorDeepness);
+    result.g = colorScaling(xIn.at(3), colorDeepness);
+    return(result);
+}
+
+int Object::colorScaling(float xIn, float colorDeepness)
 {
     int result = int(floor(128*(1-exp(-colorDeepness*std::abs(xIn)))));
     if (xIn < 0)
@@ -49,7 +57,6 @@ unsigned int Object::projectionColor1(float xIn, float colorDeepness)
     }
     return(result + 128);
 }
-
 
 //Input: An edge, whose coordinates may be smaller than 0 in dim 3,4 --> they shall not be projected, as they are behind the observer
 //Output: Edge, which is the visible part of the input (*visible in some sense, explained in the docs)

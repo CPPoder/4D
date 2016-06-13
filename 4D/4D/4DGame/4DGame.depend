@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1465160998 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
+1465734257 source:c:\users\sebi\documents\4dstuff\github\4d\4d\framework.cpp
 	"stdafx.h"
 	"Framework.hpp"
 
@@ -1554,14 +1554,14 @@
 
 1464164154 c:\users\sebi\documents\4dstuff\github\4d\4d\our4dvectors.hpp
 
-1465339610 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
+1465815729 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
 	"stdafx.h"
 	"Object.hpp"
 	"ourMatrices.hpp"
 	"ourVectors.hpp"
 	<algorithm>
 
-1465338824 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
+1465815970 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
 	"element.hpp"
 	"ourVectors.hpp"
 	"ourMatrices.hpp"
@@ -1572,7 +1572,7 @@
 	<iostream>
 	<vector>
 
-1465376609 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
+1465815484 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
 	"stdafx.h"
 	"SFML\Graphics.hpp"
 	<vector>
@@ -1622,4 +1622,16 @@
 	"stdafx.h"
 	"myUsefulMath.hpp"
 	<cstdlib>
+
+1465814972 source:c:\users\sebi\documents\4dstuff\github\4d\4d\coordinatecross.cpp
+	"CoordinateCross.hpp"
+	"SFML/Graphics.hpp"
+	<vector>
+	"stdafx.h"
+
+1465814559 c:\users\sebi\documents\4dstuff\github\4d\4d\coordinatecross.hpp
+	"Object.hpp"
+	"ourVectors.hpp"
+	"ourMatrices.hpp"
+	"SFML/Graphics.hpp"
 
