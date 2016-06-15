@@ -140,7 +140,7 @@ The spatial projection implemented uses the idea of all parallel lines \enquote{
 Such a projection can be achieved by using the projection map $p : \mathbb{R}^3 \to \mathbb{R}^2$ defined by: 
 
 \begin{equation}
-p(x_1, x_2, x_3, x_4) = \vec{\alpha} \cdot \vec{x_1 x_2} + (\vec{f_1} - \vec{\alpha} \cdot \vec{x_1 x_2} + \vec{f_2} - \vec{\alpha} \cdot \vec{x_1 x_2})(1 - \frac{1}{2}^{\frac{z}{l_0}}),
+\vec{p}(x_1, x_2, x_3, x_4) = \vec{\alpha} \cdot [\vec{x_1 x_2} + (\vec{f_1} -  \vec{x_1 x_2})(1 - \frac{1}{2}^{\frac{x_3}{l_0}}) + (\vec{f_2} - \vec{x_1 x_2})(1 - \frac{1}{2}^{\frac{x_4}{l_0}})],
 \end{equation}
 where $\vec{\alpha}$ is a vector controlling the scaling (the zoom), $\vec{x_1 x_2}$ denotes the vector defined by $(x1, x2)^T$, $\vec{f_1}, \vec{f_2}$ the focus points to which all lines in $x_3$ or $x_4$ direction head and $l_0$ a parameter controlling the way in which things get smaller the farer they move away. 
 
@@ -155,10 +155,10 @@ mView: S' \to S
 A change of coordinates can be easily expressed in terms of the current observer coordintes as a trafo R (in SO(4)). The new observers coordinates are then given by $S'_{new} = R \cdot S'_{old}$ and the new mView matrix then is described by 
 
 \begin{equation}
-mView_{new} = mView_{old} \cdot R^{-1},
+mView_{new} = R \cdot mView_{old} 
 \end{equation}
 
-as then $mView : S'_{new} \to S'_{old} \to S$.
+for a reasoning which is a bit confusing for me right now. It is important to look at the system, in which the rotation is done. This system is fixed!
 
 The advantage of this convention is that during the calculation of a points components in observers coordinates from its standard coordinates, one has to use the map $S' \to S$ as it's the inverse the map mapping the system $S$ on $S'$. Hence one does not need to invert the mView.
 

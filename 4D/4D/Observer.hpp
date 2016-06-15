@@ -7,7 +7,7 @@ class Observer
 {
 private:
     fd::Vector4f mPosition;
-    fd::Matrix44f mView; // Matrix, contains the map standard system --> observer system
+    fd::Matrix44f mView; // Matrix, contains the map observer system --> standard system
 
 public:
 

@@ -6,7 +6,7 @@
 #include <cmath>
 
 Object::Object()
-    : mColorDeepness(1.f), alpha({3.f, 3.f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), l0(2.f), mParallelProjection(false), mRestrictVisibility(false)
+    : mColorDeepness(1.f), alpha({1.0f, 1.0f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), l0(2.f), mParallelProjection(false), mRestrictVisibility(false)
 {
 
 }
@@ -47,8 +47,7 @@ fd::Vector2f Object::spatialProjection(fd::Vector4f pointIn)
 {
     fd::Vector2f result;
     fd::Vector2f x1x2 ({pointIn.at(0), pointIn.at(1)});
-    fd::Vector2f pointTemp = fd::componentwiseMultiplication(alpha, x1x2); //Contains the coordinates which result just from x1 and x2, reason: shows up often in next step
-    result = pointTemp + (f1 - pointTemp)*float((1 - pow(0.5, pointIn.at(2)/l0))) + (f2 - pointTemp)*float((1 - pow(0.5, pointIn.at(3)/l0)));
+    result = fd::componentwiseMultiplication(x1x2 + (f1 - x1x2)*float((1 - pow(0.5, pointIn.at(2)/l0))) + (f2 - x1x2)*float((1 - pow(0.5, pointIn.at(3)/l0))), alpha);
     return(result);
 }
 

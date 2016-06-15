@@ -77,7 +77,7 @@ void Observer::rotationX1(float phi)
     rotMatrix.at(3,0) = -sin(phi);
     rotMatrix.at(3,3) = cos(phi);
 
-    mView = mView*rotMatrix;
+    mView = rotMatrix*mView;
 }
 
 //Rotation of v in towards x2-axis (leaves x1, y invariant)
@@ -91,7 +91,7 @@ void Observer::rotationX2(float phi)
     rotMatrix.at(3,1) = -sin(phi);
     rotMatrix.at(3,3) = cos(phi);
 
-    mView = mView*rotMatrix;
+    mView = rotMatrix*mView;
 }
 
 //Rotation of v in towards x2-axis (leaves x1, y invariant)
@@ -105,5 +105,5 @@ void Observer::rotationY(float phi)
     rotMatrix.at(3,2) = -sin(phi);
     rotMatrix.at(3,3) = cos(phi);
 
-    mView = mView*rotMatrix;
+    mView = rotMatrix*mView;
 }
