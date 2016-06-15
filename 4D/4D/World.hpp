@@ -3,9 +3,14 @@
 
 #include <vector>
 
+
 #include "Cuboid.hpp"
 
 #include "Observer.hpp"
+
+#include "CoordinateCross.hpp"
+
+
 
 class World
 {
@@ -15,12 +20,11 @@ private:
     // Objects in the world
     std::vector<Cuboid> mCuboids;
 
-    // Icon indicating the coloring
-    //Object mCoordinateCross;
-
-
     //The observer
     Observer mObserver;
+
+    // The coordinate cross
+    CoordinateCross mCoordinateCross;
 
     //Variables controlling the sensitivity of the controlling
     float mAlpha;
@@ -28,11 +32,6 @@ private:
     //Variable controlling the coloring of the vertices
     float mColorDeepness;
 
-    //Variable containing projection mode
-    bool mParallelProjection;
-
-    //Variable controlling
-    bool mRestrictVisibility;
 
 
 public:

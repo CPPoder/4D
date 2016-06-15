@@ -17,8 +17,11 @@ public:
     CoordinateCross();
     ~CoordinateCross() override;
 
-    void render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position, float colorDeepness) override;
-    void fillVertexArray();
+
+    void handleEvents() override;
+    void update(sf::Time &elapsed) override;
+    void render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position) override;
+    void fillVertexArray(float colorDeepness);
 
 };
 

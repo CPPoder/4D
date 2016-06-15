@@ -28,7 +28,7 @@ Observer::~Observer()
 //Moving the observer through space, rotations
 void Observer::update(sf::Time &elapsed, float sensitivity)
 {   //The signs have to be checked!!
-    fd::Vector4f vInStandardBasis({0,0,0,1});
+    fd::Vector4f vInStandardBasis({0,0,1,1});
     if (mMoveAD != 0)
     {
         rotationX1(mMoveAD*sensitivity*elapsed.asSeconds());

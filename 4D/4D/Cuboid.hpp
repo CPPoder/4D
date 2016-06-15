@@ -22,7 +22,7 @@ public:
 
     void handleEvents() override;
     void update(sf::Time &elapsed) override;
-    void render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position, float colorDeepness) override;
+    void render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position) override;
 
     void fillCorners(); //Writes the coordinates which follow from the mPosition and mDiagonal into mCorners
 

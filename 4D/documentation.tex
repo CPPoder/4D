@@ -83,6 +83,11 @@
 
 \maketitle
 
+
+\section{Controlling}
+Controlling is done by using the keys W, A, S, D, X and Y for rotation the direction in which the observer looks and using Up and Down (right hand) for moving in direction of v (explained later) forwards or backwards. 
+
+
 \section{Structure of the project}
 
 List of classes: 
@@ -117,6 +122,29 @@ Describes the position and orientation of the observer in space. Position is enc
 \section{Idea of the 4D projection and controlling}
 
 \subsection{Projection}
+
+\subsubsection{Parallel Projection}
+The idea of parallel projection is that any line in $x_3$ or $x_4$ direction is drawn in a certain direction (here: $x_3$ in a 45 degree angle to the upper right, $x_4$ to the upper left) and distances in one of those directions is scaled by a certain factor only. This means e.g. that objects in far distance have the same size as close objects. 
+
+The projection $ p : \mathbb{R}^4 \to \mathbb{R}^2$ was implemented by the following matrix: 
+\newline
+
+$\begin{array}{cccc}
+1 & 0 & .5 & -.5 \\ 
+0 & 1 & -.5 & -.5
+\end{array} $
+
+\subsubsection{Spatial projection}
+The spatial projection implemented uses the idea of all parallel lines \enquote{focusing} on a point lying in infty distance to the observer. 
+
+Such a projection can be achieved by using the projection map $p : \mathbb{R}^3 \to \mathbb{R}^2$ defined by: 
+
+\begin{equation}
+p(x_1, x_2, x_3, x_4) = \vec{\alpha} \cdot \vec{x_1 x_2} + (\vec{f_1} - \vec{\alpha} \cdot \vec{x_1 x_2} + \vec{f_2} - \vec{\alpha} \cdot \vec{x_1 x_2})(1 - \frac{1}{2}^{\frac{z}{l_0}}),
+\end{equation}
+where $\vec{\alpha}$ is a vector controlling the scaling (the zoom), $\vec{x_1 x_2}$ denotes the vector defined by $(x1, x2)^T$, $\vec{f_1}, \vec{f_2}$ the focus points to which all lines in $x_3$ or $x_4$ direction head and $l_0$ a parameter controlling the way in which things get smaller the farer they move away. 
+
+\subsection{Saving the motion of the observer}
 
 Observer has the variable fd::Vector4f mView which describes the transformation from observer coordinates ($S'$) to standard coordinates ($S$):
 
@@ -187,6 +215,8 @@ R_{y}(\phi) = \begin{array}{cccc}
 \end{array} 
 \end{equation}.
 
+\subsection{Visibility of elements}
+
 As the projection performed goes from 4D to 2D, there are two axes orthogonal to the plane projected onto. 
 
 It is assumed, that a point is visible, if its coordinates in both $x_3$ and $x_4$ are positive. (The situation can be visualized by using a 2D coordinate system - a point is visible iaof it lies in the I. quadrant.)
@@ -205,9 +235,7 @@ C) Both points are invisible
 
 Define $t^1 = \frac{x^1}{x^1 - y^1}, t^2 = \frac{x^2}{x^2 - y^2}$. If $x^1 (t^1 - t^2) > 0 \rightarrow $ the intervall $[(1 - t^1) \vec{x} + t^1 \vec{y}, (1 - t^2) \vec{x} + t^2 \vec{y}]$ is visible, else nothing is visible. 
 
-\subsection{Controlling}
 
-Controlling is done by using the keys W, A, S, D, X and Y for rotation the direction in which the observer looks and using Up and Down (right hand) for moving in direction of v forwards or backwards. 
 
 
 

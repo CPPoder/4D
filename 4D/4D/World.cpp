@@ -16,9 +16,8 @@ World::World()
 
 
     //Construct a simple cuboid
-    std::vector<float> mTemp (4, 10.f);
-    fd::Vector4f mTemp4f(mTemp);
-    mCuboids.push_back(Cuboid(mTemp4f, 15.f*mTemp4f));
+    //Cuboid(position, diagonal)
+    mCuboids.push_back(Cuboid(fd::Vector4f({5.f, 0.f, 0.f, 0.f}),fd::Vector4f({1.f, 1.f, 1.f, 1.f})));
 
 
 }
@@ -51,9 +50,12 @@ void World::render(sf::RenderWindow *pRenderWindow)
 
     for (Cuboid cCuboid : mCuboids)
     {
-        cCuboid.render(pRenderWindow, fView, fPosition, mColorDeepness);
+        cCuboid.render(pRenderWindow, fView, fPosition);
         mObserver.render();
     }
+
+    //Render the CoordinateCross
+    mCoordinateCross.render(pRenderWindow, fView, fPosition);
 }
 
 //Hand detected moves of the observer to the observer object

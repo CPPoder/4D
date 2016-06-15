@@ -35,7 +35,7 @@ void Cuboid::handleEvents()
 
 }
 
-void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position, float colorDeepness)
+void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position)
 {
     //Part 1: Compute the coordinates of the corners in observers coordinates
     //The order is given by: start with the edge at the position vector, then add the diagonal componentwise wrt the schema 0000, 0001, 0010, ..., 1111
@@ -50,13 +50,29 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
     fd::Vector2f globalOffset;
     globalOffset.at(0) = 720;
     globalOffset.at(1) = 450;
+    if (mParallelProjection)
+    {
+        for(int i = 0; i < 16; i++)
+        {
+            mCornersProjected.at(i) = parallelProjection(transformToObserversView(position, view, mCorners.at(i))) + globalOffset;
+
+        }
+    }
+    else
+    {
+        for(int i = 0; i < 16; i++)
+        {
+            mCornersProjected.at(i) = spatialProjection(transformToObserversView(position, view, mCorners.at(i))) + globalOffset;
+        }
+    }
+
     for(int i = 0; i < 16; i++)
     {
-        mCornersProjected.at(i) = parallelProjection(transformToObserversView(position, view, mCorners.at(i))) + globalOffset;
-        mCornersColors.at(i) = projectionColor((transformToObserversView(position, view, mCorners.at(i))), colorDeepness);
-        mCornersColors.at(i) = projectionColor((transformToObserversView(position, view, mCorners.at(i))), colorDeepness);
-
+        mCornersColors.at(i) = projectionColor((transformToObserversView(position, view, mCorners.at(i))), mColorDeepness);
+        mCornersColors.at(i) = projectionColor((transformToObserversView(position, view, mCorners.at(i))), mColorDeepness);
     }
+
+
 
     //This function has to be optimized!!!!
     //Part 2: Construct VertexArray containing all the edges

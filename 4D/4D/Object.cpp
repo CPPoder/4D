@@ -3,8 +3,10 @@
 #include "ourMatrices.hpp"
 #include "ourVectors.hpp"
 #include <algorithm>
+#include <cmath>
 
 Object::Object()
+    : mColorDeepness(1.f), alpha({3.f, 3.f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), l0(2.f), mParallelProjection(false), mRestrictVisibility(false)
 {
 
 }
@@ -38,6 +40,21 @@ fd::Vector2f Object::parallelProjection(fd::Vector4f pointIn)
     return(result);
 
 }
+
+
+//Projects a point onto its position in a spatial manner - in compairison to the parallelProjection method
+fd::Vector2f Object::spatialProjection(fd::Vector4f pointIn)
+{
+    fd::Vector2f result;
+    fd::Vector2f x1x2 ({pointIn.at(0), pointIn.at(1)});
+    fd::Vector2f pointTemp = fd::componentwiseMultiplication(alpha, x1x2); //Contains the coordinates which result just from x1 and x2, reason: shows up often in next step
+    result = pointTemp + (f1 - pointTemp)*float((1 - pow(0.5, pointIn.at(2)/l0))) + (f2 - pointTemp)*float((1 - pow(0.5, pointIn.at(3)/l0)));
+    return(result);
+}
+
+
+
+
 //Returns unsigned int in range 0 - 256 (adopted to rgb colors)
 //Points with high input value get a high output
 sf::Color Object::projectionColor(fd::Vector4f xIn, float colorDeepness)

@@ -12,16 +12,37 @@ private:
     fd::Vector4f mPosition;
 
 public:
+    //Variables controlling the coloring
+    float mColorDeepness;
+
+    //Controlling the zoom
+    fd::Vector2f alpha;
+
+    //Controlling the two focus points
+    fd::Vector2f f1;
+    fd::Vector2f f2;
+
+    //Controlling the way, in which things get smaller when moving away
+    float l0;
+
+    //Variables controlling the drawing style
+    bool mParallelProjection;
+    bool mRestrictVisibility;
+
+
+
     Object();
     virtual ~Object();
 
     virtual void handleEvents() = 0;
     virtual void update(sf::Time &elapsed) = 0;
-    virtual void render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position, float colorDeepness) = 0;
+    virtual void render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position) = 0;
 
     fd::Vector4f transformToObserversView(fd::Vector4f *positionObserver, fd::Matrix44f *viewObserver, fd::Vector4f point);
 
     fd::Vector2f parallelProjection(fd::Vector4f pointIn);
+
+    fd::Vector2f spatialProjection(fd::Vector4f pointIn);
 
     int colorScaling(float xIn, float colorDeepness);
 
