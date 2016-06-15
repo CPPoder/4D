@@ -222,6 +222,101 @@ namespace fd
 			}
 		}
 
+		//Set Column from Vector
+		void setColumn(unsigned int columnNumber, Vector<T, m> const & column)
+		{
+			if (columnNumber > (n - 1))
+			{
+				throw "Matrix::setColumn(unsigned int, Vector<T, m>) : Column number is incompatible with matrix size!";
+			}
+			for (unsigned int i = 0; i < m; i++)
+			{
+				matrix.at(i).at(columnNumber) = column.getValueAt(i);
+			}
+		}
+
+		//Set Row from Vector
+		void setRow(unsigned int rowNumber, Vector<T, n> const & row)
+		{
+			if (rowNumber > (m - 1))
+			{
+				throw "Matrix::setRow(unsigned int, Vector<T, n>) : Row number is incompatible with matrix size!";
+			}
+			for (unsigned int j = 0; j < n; j++)
+			{
+				matrix.at(rowNumber).at(j) = row.getValueAt(j);
+			}
+		}
+
+		//Swap Rows
+		void swapRows(unsigned int row1, unsigned int row2)
+		{
+			if ((row1 > (m - 1)) || (row2 > (m - 1)))
+			{
+				throw "Matrix::swapRows(unsigned int, unsigned int) : At least one row number is incompatible with matrix size!";
+			}
+			matrix.at(row1).swap(matrix.at(row2));
+		}
+
+		//Swap Columns
+		void swapColumns(unsigned int column1, unsigned int column2)
+		{
+			if ((column1 > (n - 1)) || (column2 > (n - 1)))
+			{
+				throw "Matrix::swapcolumns(unsigned int, unsigned int) : At least one column number is incompatible with matrix size!";
+			}
+			for (unsigned int i = 0; i < m; i++)
+			{
+				T column1Backup = matrix.at(i).at(column1);
+				matrix.at(i).at(column1) = matrix.at(i).at(column2);
+				matrix.at(i).at(column2) = column1Backup;
+			}
+		}
+
+		//Multiply a row with a scalar
+		void multiplyRowWith(T factor, unsigned int rowNumber)
+		{
+			if (rowNumber > (m - 1))
+			{
+				throw "Matrix::multiplyRowWith(T, unsigned int) : Row number is incompatible with matrix size!";
+			}
+			for (unsigned int j = 0; j < n; j++)
+			{
+				matrix.at(rowNumber).at(j) = matrix.at(rowNumber).at(j) * factor;
+			}
+		}
+
+		//Multiply a column with a scalar
+		void multiplyColumnWith(T factor, unsigned int columnNumber)
+		{
+			if (columnNumber > (n - 1))
+			{
+				throw "Matrix::multiplyColumnWith(T, unsigned int) : Column number is incompatible with matrix size!";
+			}
+			for (unsigned int i = 0; i < m; i++)
+			{
+				matrix.at(columnNumber).at(i) = matrix.at(columnNumber).at(i) * factor;
+			}
+		}
+
+		//Add vector to row
+		void addVectorToRow(unsigned int rowNumber, Vector<T, n> rowVector)
+		{
+			for (unsigned int j = 0; j < n; j++)
+			{
+				matrix.at(rowNumber).at(j) = matrix.at(rowNumber).at(j) + rowVector.at(j);
+			}
+		}
+
+		//Add vector to column
+		void addVectorToColumn(unsigned int columnNumber, Vector<T, m> columnVector)
+		{
+			for (unsigned int i = 0; i < m; i++)
+			{
+				matrix.at(i).at(columnNumber) = matrix.at(i).at(columnNumber) + columnVector.at(i);
+			}
+		}
+
 	};
 
 
@@ -409,7 +504,7 @@ namespace fd
 		return result;
 	}
 
-	//Coponentwise Multiplication
+	//Componentwise Multiplication
 	template <typename T, unsigned int m, unsigned int n> Matrix<T, m, n> componentwiseMultiplication(Matrix<T, m, n> const & mat1, Matrix<T, m, n> const & mat2)
 	{
 		Matrix<T, m, n> result;
@@ -522,6 +617,62 @@ namespace fd
 
 	//////////////////////////////////////////
 	//Function templates : Helpful functions
+
+	//Determinant of a quadratic matrix
+	template <typename T, unsigned int size> T determinant(Matrix<T, size, size> matrix)
+	{
+		T factorAccumulator = T(1);
+		for (unsigned int j = 0; j < size; j++)
+		{
+			{	//Anonymous block (Begin)
+				T diagonalValue = matrix.getValueAt(j, j);
+				if (diagonalValue == T(0))
+				{
+					//React on Zero (Swap rows or finsish calculation)
+					bool foundNonZeroValue;
+					unsigned int rowWithoutZero = j;
+					while (true)
+					{
+						rowWithoutZero = rowWithoutZero + 1;
+						if (rowWithoutZero >= size)
+						{
+							foundNonZeroValue = false;
+							break;
+						}
+						if (matrix.at(rowWithoutZero, j) != 0)
+						{
+							foundNonZeroValue = true;
+							break;
+						}
+					}
+					if (foundNonZeroValue) //Swap case
+					{
+						factorAccumulator = -factorAccumulator;
+						matrix.swapRows(j, rowWithoutZero);
+					}
+					else //Calculation finshed case
+					{
+						return T(0);
+					}
+				}
+				factorAccumulator = factorAccumulator / diagonalValue;
+				matrix.multiplyRowWith((1 / diagonalValue), j);
+			}	//Anonymous block (End)
+			for (unsigned int i = (j + 1); i < size; i++)
+			{
+				T value = matrix.getValueAt(i, j);
+				if (value != T(0))
+				{
+					factorAccumulator = factorAccumulator / value;
+					matrix.multiplyRowWith((1 / value), i);
+					matrix.addVectorToRow(i, -matrix.getRow(j));
+				}
+			}
+			//matrix.outputOnTerminal("\t", "Gauss:");
+			//std::cout << "accum: " << (1 / factorAccumulator) << std::endl;
+		}
+		return (1/factorAccumulator);
+	}
 
 	//Output on terminal
 	template <typename T, unsigned int m, unsigned int n> void outputOnTerminal(Matrix<T, m, n> const & mat, std::string separator = "\t", std::string description = "")
