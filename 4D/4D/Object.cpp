@@ -3,8 +3,10 @@
 #include "ourMatrices.hpp"
 #include "ourVectors.hpp"
 #include <algorithm>
+#include <cmath>
 
 Object::Object()
+    : mColorDeepness(1.f), alpha({1.0f, 1.0f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), l0(2.f), mParallelProjection(false), mRestrictVisibility(false)
 {
 
 }
@@ -15,7 +17,7 @@ Object::~Object()
 }
 
 //Gets the observers position and mView matrix and calculates the coordinates of its own position in terms of the observers coordinates
-fd::Vector4f Object::transfromToObserversView(fd::Vector4f *positionObserver, fd::Matrix44f *viewObserver, fd::Vector4f point)
+fd::Vector4f Object::transformToObserversView(fd::Vector4f *positionObserver, fd::Matrix44f *viewObserver, fd::Vector4f point)
 {
     fd::Vector4f result;
     result = *viewObserver*(point - *positionObserver);
@@ -38,17 +40,38 @@ fd::Vector2f Object::parallelProjection(fd::Vector4f pointIn)
     return(result);
 
 }
-//Returns unsigned int in range 0 - 256 (adopted to rgb colors)
-//Points with high input value get a high output
-unsigned int Object::projectionColor1(float xIn, float colorDeepness)
+
+
+//Projects a point onto its position in a spatial manner - in compairison to the parallelProjection method
+fd::Vector2f Object::spatialProjection(fd::Vector4f pointIn)
 {
-    return(int(floor(1-exp(-colorDeepness*xIn))));
+    fd::Vector2f result;
+    fd::Vector2f x1x2 ({pointIn.at(0), pointIn.at(1)});
+    result = fd::componentwiseMultiplication(x1x2 + (f1 - x1x2)*float((1 - pow(0.5, pointIn.at(2)/l0))) + (f2 - x1x2)*float((1 - pow(0.5, pointIn.at(3)/l0))), alpha);
+    return(result);
 }
 
 
-unsigned int Object::projectionColor2(float xIn, float colorDeepness)
+
+
+//Returns unsigned int in range 0 - 256 (adopted to rgb colors)
+//Points with high input value get a high output
+sf::Color Object::projectionColor(fd::Vector4f xIn, float colorDeepness)
 {
-    return(int(floor(1-exp(-colorDeepness*xIn))));
+    sf::Color result(0, 0, 50, 255);
+    result.r = colorScaling(xIn.at(2), colorDeepness);
+    result.g = colorScaling(xIn.at(3), colorDeepness);
+    return(result);
+}
+
+int Object::colorScaling(float xIn, float colorDeepness)
+{
+    int result = int(floor(128*(1-exp(-colorDeepness*std::abs(xIn)))));
+    if (xIn < 0)
+    {
+        result = result*(-1);
+    }
+    return(result + 128);
 }
 
 //Input: An edge, whose coordinates may be smaller than 0 in dim 3,4 --> they shall not be projected, as they are behind the observer

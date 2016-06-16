@@ -15,7 +15,7 @@ Observer::Observer()
         mView.at(i,i) = 1.0f;
     }
     //Multiply by rotation to match the (x1, x2, y, v) system in stead of the (x1, x2, x3, x4)
-    rotationY(pi/4);
+    //rotationY(pi/4);
     std::cout << mView.at(2,2) << " " <<  mView.at(2,3) << " " << mView.at(3,2) << " " << mView.at(3,3) << std::endl;
 }
 
@@ -28,7 +28,7 @@ Observer::~Observer()
 //Moving the observer through space, rotations
 void Observer::update(sf::Time &elapsed, float sensitivity)
 {   //The signs have to be checked!!
-    fd::Vector4f vInStandardBasis({0,0,0,1});
+    fd::Vector4f vInStandardBasis({0,0,1,1});
     if (mMoveAD != 0)
     {
         rotationX1(mMoveAD*sensitivity*elapsed.asSeconds());
@@ -77,7 +77,7 @@ void Observer::rotationX1(float phi)
     rotMatrix.at(3,0) = -sin(phi);
     rotMatrix.at(3,3) = cos(phi);
 
-    mView = mView*rotMatrix;
+    mView = rotMatrix*mView;
 }
 
 //Rotation of v in towards x2-axis (leaves x1, y invariant)
@@ -91,7 +91,7 @@ void Observer::rotationX2(float phi)
     rotMatrix.at(3,1) = -sin(phi);
     rotMatrix.at(3,3) = cos(phi);
 
-    mView = mView*rotMatrix;
+    mView = rotMatrix*mView;
 }
 
 //Rotation of v in towards x2-axis (leaves x1, y invariant)
@@ -105,5 +105,5 @@ void Observer::rotationY(float phi)
     rotMatrix.at(3,2) = -sin(phi);
     rotMatrix.at(3,3) = cos(phi);
 
-    mView = mView*rotMatrix;
+    mView = rotMatrix*mView;
 }

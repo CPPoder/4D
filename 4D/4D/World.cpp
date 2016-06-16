@@ -5,7 +5,7 @@
 
 //Constructor
 World::World()
-    : mObserver(), mAlpha(1.f)
+    : mObserver(), mAlpha(1.f), mColorDeepness(1.f)
 {
     //Size of the world
     //Default standard while developing
@@ -14,10 +14,10 @@ World::World()
     mSize3 = 100.f;
     mSize4 = 100.f;
 
+
     //Construct a simple cuboid
-    std::vector<float> mTemp (4, 10.f);
-    fd::Vector4f mTemp4f(mTemp);
-    mCuboids.push_back(Cuboid(mTemp4f, 10.f*mTemp4f));
+    //Cuboid(position, diagonal)
+    mCuboids.push_back(Cuboid(fd::Vector4f({5.f, 0.f, 0.f, 0.f}),fd::Vector4f({1.f, 1.f, 1.f, 1.f})));
 
 
 }
@@ -53,6 +53,9 @@ void World::render(sf::RenderWindow *pRenderWindow)
         cCuboid.render(pRenderWindow, fView, fPosition);
         mObserver.render();
     }
+
+    //Render the CoordinateCross
+    mCoordinateCross.render(pRenderWindow, fView, fPosition);
 }
 
 //Hand detected moves of the observer to the observer object

@@ -98,6 +98,8 @@
 			<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW" />
 			<Add directory="C:/Users/Sebi/Documents/Installation_files/SFML-2.3.2-windows-gcc-4.8.1-tdm-32-bit/SFML-2.3.2/lib" />
 		</Linker>
+		<Unit filename="../CoordinateCross.cpp" />
+		<Unit filename="../CoordinateCross.hpp" />
 		<Unit filename="../Cuboid.cpp" />
 		<Unit filename="../Cuboid.hpp" />
 		<Unit filename="../Element.cpp" />
