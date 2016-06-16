@@ -38,7 +38,7 @@ public:
 
     void handleEvents();
     void update(sf::Time &elapsed) ;
-    void render(sf::RenderWindow *pRenderWindow);
+    void render(sf::RenderWindow* pRenderWindow);
 
     void moveViewA();
     void moveViewD();
