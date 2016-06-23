@@ -9,9 +9,12 @@
 class Object : public Element
 {
 private:
-    fd::Vector4f mPosition;
+    //fd::Vector4f mPosition;
 
 public:
+    //Variable controlling the centering of the drawing
+    fd::Vector2f mGlobalOffset;
+
     //Variables controlling the coloring
     float mColorDeepness;
 

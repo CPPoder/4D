@@ -47,14 +47,11 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
         mCornersColors.push_back(sf::Color(0, 0, 0, 255));
     }
 
-    fd::Vector2f globalOffset;
-    globalOffset.at(0) = 720;
-    globalOffset.at(1) = 450;
     if (mParallelProjection)
     {
         for(int i = 0; i < 16; i++)
         {
-            mCornersProjected.at(i) = parallelProjection(transformToObserversView(position, view, mCorners.at(i))) + globalOffset;
+            mCornersProjected.at(i) = parallelProjection(transformToObserversView(position, view, mCorners.at(i))) + mGlobalOffset;
 
         }
     }
@@ -62,7 +59,7 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
     {
         for(int i = 0; i < 16; i++)
         {
-            mCornersProjected.at(i) = spatialProjection(transformToObserversView(position, view, mCorners.at(i))) + globalOffset;
+            mCornersProjected.at(i) = spatialProjection(transformToObserversView(position, view, mCorners.at(i))) + mGlobalOffset;
         }
     }
 

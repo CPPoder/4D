@@ -18,6 +18,7 @@ World::World()
     //Construct a simple cuboid
     //Cuboid(position, diagonal)
     mCuboids.push_back(Cuboid(fd::Vector4f({5.f, 0.f, 0.f, 0.f}),fd::Vector4f({1.f, 1.f, 1.f, 1.f})));
+    mPoints.push_back(Point(fd::Vector4f({5.f, 0.f, 0.f, 0.f})));
 
 
 }
@@ -51,9 +52,11 @@ void World::render(sf::RenderWindow *pRenderWindow)
     for (Cuboid cCuboid : mCuboids)
     {
         cCuboid.render(pRenderWindow, fView, fPosition);
-        mObserver.render();
     }
-
+    for (Point cPoint : mPoints)
+    {
+        cPoint.render(pRenderWindow, fView, fPosition);
+    }
     //Render the CoordinateCross
     mCoordinateCross.render(pRenderWindow, fView, fPosition);
 }

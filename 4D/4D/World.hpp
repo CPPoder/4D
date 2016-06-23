@@ -6,6 +6,8 @@
 
 #include "Cuboid.hpp"
 
+#include "Point.hpp"
+
 #include "Observer.hpp"
 
 #include "CoordinateCross.hpp"
@@ -19,6 +21,8 @@ private:
 
     // Objects in the world
     std::vector<Cuboid> mCuboids;
+
+    std::vector<Point> mPoints;
 
     //The observer
     Observer mObserver;
