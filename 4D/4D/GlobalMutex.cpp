@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "GlobalMutex.hpp"
 
 //Initialize static variables
