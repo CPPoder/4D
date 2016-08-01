@@ -12,6 +12,8 @@
 
 #include "CoordinateCross.hpp"
 
+#include "PointOfView.hpp"
+
 
 
 class World
@@ -29,6 +31,9 @@ private:
 
     // The coordinate cross
     CoordinateCross mCoordinateCross;
+
+    // The point of view
+    PointOfView mPointOfView;
 
     //Variables controlling the sensitivity of the controlling
     float mAlpha;

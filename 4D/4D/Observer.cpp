@@ -28,14 +28,14 @@ Observer::~Observer()
 //Moving the observer through space, rotations
 void Observer::update(sf::Time &elapsed, float sensitivity)
 {   //The signs have to be checked!!
-    fd::Vector4f vInStandardBasis({0,0,1,1});
+    fd::Vector4f vInStandardBasis({0,0,1,0});
     if (mMoveAD != 0)
     {
         rotationX1(mMoveAD*sensitivity*elapsed.asSeconds());
     }
     if (mMoveWS != 0)
     {
-        rotationX2(-mMoveWS*sensitivity*elapsed.asSeconds());
+        rotationX2(mMoveWS*sensitivity*elapsed.asSeconds());
     }
     if (mMoveXY != 0)
     {
@@ -43,7 +43,7 @@ void Observer::update(sf::Time &elapsed, float sensitivity)
     }
     if (mMoveFB != 0)
     {
-        mPosition = mPosition + mMoveFB*elapsed.asSeconds()*10.f*mView*vInStandardBasis;
+        mPosition = mPosition + mMoveFB*elapsed.asSeconds()*10.f*mView.getTransposed()*vInStandardBasis;
     }
 }
 
@@ -71,11 +71,11 @@ void Observer::rotationX1(float phi)
 {
     fd::Matrix44f rotMatrix (0.0f);
     rotMatrix.at(0,0) = cos(phi);
-    rotMatrix.at(0,3) = sin(phi);
+    rotMatrix.at(0,2) = sin(phi);
     rotMatrix.at(1,1) = 1.f;
-    rotMatrix.at(2,2) = 1.f;
-    rotMatrix.at(3,0) = -sin(phi);
-    rotMatrix.at(3,3) = cos(phi);
+    rotMatrix.at(3,3) = 1.f;
+    rotMatrix.at(2,0) = -sin(phi);
+    rotMatrix.at(2,2) = cos(phi);
 
     mView = rotMatrix*mView;
 }
@@ -86,10 +86,10 @@ void Observer::rotationX2(float phi)
     fd::Matrix44f rotMatrix (0.0f);
     rotMatrix.at(0,0) = 1.f;
     rotMatrix.at(1,1) = cos(phi);
-    rotMatrix.at(1,3) = sin(phi);
-    rotMatrix.at(2,2) = 1.f;
-    rotMatrix.at(3,1) = -sin(phi);
-    rotMatrix.at(3,3) = cos(phi);
+    rotMatrix.at(1,2) = sin(phi);
+    rotMatrix.at(3,3) = 1.f;
+    rotMatrix.at(2,1) = -sin(phi);
+    rotMatrix.at(2,2) = cos(phi);
 
     mView = rotMatrix*mView;
 }

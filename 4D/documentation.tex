@@ -119,11 +119,11 @@ Describes the position and orientation of the observer in space. Position is enc
 
 \end{itemize}
 
-\section{Idea of the 4D projection and controlling}
+\section{Idea of the 4D projection and controlling and their visibilities}
 
-\subsection{Projection}
 
-\subsubsection{Parallel Projection}
+\subsection{Parallel Projection}
+\subsubsection{Projecting}
 The idea of parallel projection is that any line in $x_3$ or $x_4$ direction is drawn in a certain direction (here: $x_3$ in a 45 degree angle to the upper right, $x_4$ to the upper left) and distances in one of those directions is scaled by a certain factor only. This means e.g. that objects in far distance have the same size as close objects. 
 
 The projection $ p : \mathbb{R}^4 \to \mathbb{R}^2$ was implemented by the following matrix: 
@@ -134,17 +134,65 @@ $\begin{array}{cccc}
 0 & 1 & -.5 & -.5
 \end{array} $
 
-\subsubsection{Spatial projection}
+\subsubsection{Visibility of elements}
+
+As the projection performed goes from 4D to 2D, there are two axes orthogonal to the plane projected onto. 
+
+It is assumed, that a point is visible, if its coordinates in both $x_3$ and $x_4$ are positive. (The situation can be visualized by using a 2D coordinate system - a point is visible iaof it lies in the I. quadrant.)
+
+To correctly handle an edge which is bounded by two points, one has to use an algorithm to find the visible part of the edge. 
+
+A) Both points are visible --> the whole edge is visible as the visible part is convex
+
+B) One point is visible ($\vec{x}$), the other one not ($\vec{y}$)$\rightarrow$
+Define $t^1 = \frac{x^1}{x^1 - y^1}, t^2 = \frac{x^2}{x^2 - y^2}$ and set $ t = \min(t^1, t^2), \vec{z} = (1 - t) \vec{x} + t \vec{y}$.
+
+--> The new edge is given by $[\vec{x}, \vec{z}]$.
+
+C) Both points are invisible
+1) $\vec{x}, \vec{y}$ lie in the II. / IV. quadrant disjointly (each one of them in another quadrant)
+
+Define $t^1 = \frac{x^1}{x^1 - y^1}, t^2 = \frac{x^2}{x^2 - y^2}$. If $x^1 (t^1 - t^2) > 0 \rightarrow $ the intervall $[(1 - t^1) \vec{x} + t^1 \vec{y}, (1 - t^2) \vec{x} + t^2 \vec{y}]$ is visible, else nothing is visible. 
+
+\subsection{Spatial projection}
 The spatial projection implemented uses the idea of all parallel lines \enquote{focusing} on a point lying in infty distance to the observer. 
 
 Such a projection can be achieved by using the projection map $p : \mathbb{R}^3 \to \mathbb{R}^2$ defined by: 
 
 \begin{equation}
-\vec{p}(x_1, x_2, x_3, x_4) = \vec{\alpha} \cdot [\vec{x_1 x_2} + (\vec{f_1} -  \vec{x_1 x_2})(1 - \frac{1}{2}^{\frac{x_3}{l_0}}) + (\vec{f_2} - \vec{x_1 x_2})(1 - \frac{1}{2}^{\frac{x_4}{l_0}})],
+\vec{p}(x_1, x_2, x_3, x_4) = \vec{\alpha} \cdot [\vec{f_1} + \vec{f_2} - (\vec{f_1} - \vec{x_1x_2}) (x_3 - z_0 + 1)^{-1} - (\vec{f_2} - \vec{x_1x_2}) (x_4 - z_0 + 1)^{-1}]
 \end{equation}
-where $\vec{\alpha}$ is a vector controlling the scaling (the zoom), $\vec{x_1 x_2}$ denotes the vector defined by $(x1, x2)^T$, $\vec{f_1}, \vec{f_2}$ the focus points to which all lines in $x_3$ or $x_4$ direction head and $l_0$ a parameter controlling the way in which things get smaller the farer they move away. 
+where $\vec{\alpha}$ is a vector controlling the scaling (the zoom), $\vec{x_1 x_2}$ denotes the vector defined by $(x1, x2)^T$, $\vec{f_1}, \vec{f_2}$ the focus points to which all lines in $x_3$ or $x_4$ direction head and $z_0$ a parameter giving the smallest distance which can be focused on by the observer. 
+The reason here is, that the physical eye can observe objects starting from a certain distance as the lense of the eye can only be bended in a certain range. Furthermore, things being at distance zero would have the size infinity. 
+This formula is inspired by the physics of the eye. 
+Additionally coloring is being used. \\
 
-\subsection{Saving the motion of the observer}
+Warning: this projection seems to be quite silly due to several reasons: 
+
+- if a point has $x_3 >> 0$ but $x_4$ in the range of 0, than a small change in $x_4$ has a large impact the projected point. 
+
+The notion of visibility has to be discussed! Probably according to pure color!
+
+\subsection{The pure-color projection}
+
+!!Warning: In this mode, restrictedVisibility always has to be true. 
+
+\subsubsection{Projecting}
+This projection uses a standard 3D projection and encodes the fourth dimension in color only. Its implementation is quite simple, will have to be compared to the spatial 4D one. 
+
+One gets the projection:
+\begin{equation}
+p(x_1, x_2, x_3, x_4) = \vec{f} - (\vec{f} - \vec{x_1 x_2})(x_3 - z_0 + 1)^{-1}
+\end{equation}
+where $z_0$ again is the parameter described above. Note that objects having $z_0 - 1 < x_3 < z_0$ are bigger with size going to infinity for the left inequality approaching equality and that for $z_0 - 1 > x_3$ the formula is nonsense as its outcome is negative at a certain point. 
+
+\subsubsection{The visibility}
+
+Following from the above construction of the projecting method, it seems senseful to call a point visible if it has $x_3 > z_0$ and invisible else. 
+
+For the fourth dimension it is questionable whether their should be an invisible part. At the moment, I will implement that a point is only visible if he also has $x_4 > z_0$. 
+
+\section{Saving the motion of the observer}
 
 Observer has the variable fd::Vector4f mView which describes the transformation from observer coordinates ($S'$) to standard coordinates ($S$):
 
@@ -215,25 +263,7 @@ R_{y}(\phi) = \begin{array}{cccc}
 \end{array} 
 \end{equation}.
 
-\subsection{Visibility of elements}
 
-As the projection performed goes from 4D to 2D, there are two axes orthogonal to the plane projected onto. 
-
-It is assumed, that a point is visible, if its coordinates in both $x_3$ and $x_4$ are positive. (The situation can be visualized by using a 2D coordinate system - a point is visible iaof it lies in the I. quadrant.)
-
-To correctly handle an edge which is bounded by two points, one has to use an algorithm to find the visible part of the edge. 
-
-A) Both points are visible --> the whole edge is visible as the visible part is convex
-
-B) One point is visible ($\vec{x}$), the other one not ($\vec{y}$)$\rightarrow$
-Define $t^1 = \frac{x^1}{x^1 - y^1}, t^2 = \frac{x^2}{x^2 - y^2}$ and set $ t = \min(t^1, t^2), \vec{z} = (1 - t) \vec{x} + t \vec{y}$.
-
---> The new edge is given by $[\vec{x}, \vec{z}]$.
-
-C) Both points are invisible
-1) $\vec{x}, \vec{y}$ lie in the II. / IV. quadrant disjointly (each one of them in another quadrant)
-
-Define $t^1 = \frac{x^1}{x^1 - y^1}, t^2 = \frac{x^2}{x^2 - y^2}$. If $x^1 (t^1 - t^2) > 0 \rightarrow $ the intervall $[(1 - t^1) \vec{x} + t^1 \vec{y}, (1 - t^2) \vec{x} + t^2 \vec{y}]$ is visible, else nothing is visible. 
 
 
 

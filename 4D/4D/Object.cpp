@@ -6,7 +6,7 @@
 #include <cmath>
 
 Object::Object()
-    : mGlobalOffset({720.0f, 450.0f}), mColorDeepness(1.f), alpha({0.5f, 0.5f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), l0(2.f), mParallelProjection(false), mRestrictVisibility(false)
+    : mGlobalOffset({720.0f, 450.0f}), mColorDeepness(1.f), alpha({0.5f, 0.5f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), f({0., -1.f}), z0(1.f), mProjectionManner(0), mRestrictVisibility(true)
 {
 
 }
@@ -16,7 +16,7 @@ Object::~Object()
 
 }
 
-//Gets the observers position and mView matrix and calculates the coordinates of its own position in terms of the observers coordinates
+//Gets the observers position and mView matrix and calculates the coordinates of the points position in terms of the observers coordinates
 fd::Vector4f Object::transformToObserversView(fd::Vector4f *positionObserver, fd::Matrix44f *viewObserver, fd::Vector4f point)
 {
     fd::Vector4f result;
@@ -51,10 +51,30 @@ fd::Vector2f Object::spatialProjection(fd::Vector4f pointIn)
     //result = fd::componentwiseMultiplication(x1x2 + (f1 - x1x2)*float((1 - pow(0.5, pointIn.at(2)/l0))) + (f2 - x1x2)*float((1 - pow(0.5, pointIn.at(3)/l0))), alpha);
     //linear decay:
     //wrong!
-    result = fd::componentwiseMultiplication(x1x2 + (f1 - x1x2)*(1/pointIn.at(2)) + (f2 - x1x2)*(1/pointIn.at(3)),alpha);
+    result = fd::componentwiseMultiplication(f1 + f2 - (f1 - x1x2)*(1/(pointIn.at(2) - z0 +1)) - (f2 - x1x2)*(1/pointIn.at(3)),alpha);
     return(result);
 }
 
+//Does the simple 3D to 2D projection, fourth dim will be encoded in color
+fd::Vector2f Object::pureColorProjection(fd::Vector4f pointIn)
+{
+    fd::Vector2f result;
+    fd::Vector2f x1x2 ({pointIn.at(0), pointIn.at(1)});
+
+    result = f - (f - x1x2)/(pointIn.at(2) - z0 + 1);
+    return(result);
+}
+
+//encodes the fourth dim in color when using the pureColor projection
+sf::Color Object::colorPureColor(fd::Vector4f xIn)
+{
+    sf::Color result(0,0,0,255);
+    result.r = 255;
+    int temp = std::min(int(floor(255.0/(xIn.at(3) - z0 + 1))), 255);
+    result.g = temp;
+    result.b = temp;
+    return(result);
+}
 
 
 
@@ -150,4 +170,17 @@ fd::Matrix42f Object::correctEdge(fd::Vector4f vectorIn1, fd::Vector4f vectorIn2
     }
     return(result);
 }
+
+ bool Object::isPointVisible(fd::Vector4f point)
+ {
+     float dist = point*point;
+     if ((dist > z0*z0) && (point.at(2) >= 0) && (point.at(3) >= 0))
+     {
+         return(true);
+     }
+     else
+     {
+         return(false);
+     }
+ }
 

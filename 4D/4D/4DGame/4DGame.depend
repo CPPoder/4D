@@ -11,7 +11,7 @@
 	"ourMatrices.hpp"
 	"SFML/Graphics.hpp"
 
-1466616563 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
+1469973859 c:\users\sebi\documents\4dstuff\github\4d\4d\object.hpp
 	"element.hpp"
 	"ourVectors.hpp"
 	"ourMatrices.hpp"
@@ -421,7 +421,7 @@
 	<stdio.h>
 	<tchar.h>
 
-1466616563 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
+1469976420 source:c:\users\sebi\documents\4dstuff\github\4d\4d\cuboid.cpp
 	"stdafx.h"
 	"SFML\Graphics.hpp"
 	<vector>
@@ -451,12 +451,13 @@
 	"Element.hpp"
 	"World.hpp"
 
-1466617716 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
+1470041637 c:\users\sebi\documents\4dstuff\github\4d\4d\world.hpp
 	<vector>
 	"Cuboid.hpp"
 	"Point.hpp"
 	"Observer.hpp"
 	"CoordinateCross.hpp"
+	"PointOfView.hpp"
 
 1466616563 c:\users\sebi\documents\4dstuff\github\4d\4d\point.hpp
 	"Object.hpp"
@@ -476,7 +477,7 @@
 	"myUsefulMath.hpp"
 	<cstdlib>
 
-1466663123 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
+1470047070 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
 	"stdafx.h"
 	"Object.hpp"
 	"ourMatrices.hpp"
@@ -484,21 +485,28 @@
 	<algorithm>
 	<cmath>
 
-1466001520 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
+1470046843 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
 	"stdafx.h"
 	"Observer.hpp"
 	"ourMatrices.hpp"
 	"ourVectors.hpp"
 
-1466617938 source:c:\users\sebi\documents\4dstuff\github\4d\4d\point.cpp
+1470047692 source:c:\users\sebi\documents\4dstuff\github\4d\4d\point.cpp
 	"Point.hpp"
 
 1463754202 source:c:\users\sebi\documents\4dstuff\github\4d\4d\stdafx.cpp
 	"stdafx.h"
 
-1466617698 source:c:\users\sebi\documents\4dstuff\github\4d\4d\world.cpp
+1470046914 source:c:\users\sebi\documents\4dstuff\github\4d\4d\world.cpp
 	"stdafx.h"
 	"World.hpp"
 	<iostream>
 	<vector>
+
+1470041446 c:\users\sebi\documents\4dstuff\github\4d\4d\pointofview.hpp
+	"Object.hpp"
+	"ourVectors.hpp"
+
+1470041613 source:c:\users\sebi\documents\4dstuff\github\4d\4d\pointofview.cpp
+	"PointOfView.hpp"
 
