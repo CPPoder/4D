@@ -7,6 +7,7 @@ class Point : public Object
 {
 private:
     fd::Vector4f mPosition;
+    float mSize;
 
 public:
     Point(fd::Vector4f _position);

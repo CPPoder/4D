@@ -2,7 +2,7 @@
 #include "Point.hpp"
 
 Point::Point(fd::Vector4f _position)
-    : mPosition(_position)
+    : mPosition(_position), mSize(10.f)
 {
 
 }
@@ -29,20 +29,22 @@ void Point::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vec
 
     switch(mProjectionManner)
     {
-    case 0:
+    case 0: //pureColor
         {
             if (mRestrictVisibility && isPointVisible(pos))
             {
-                sf::CircleShape circle(10);
+                float dist = sqrt(pos*pos);
+                float dist3D = sqrt(pos.at(0)*pos.at(0) + pos.at(1)*pos.at(1) + pos.at(2)*pos.at(2));
+
+                sf::CircleShape circle(mSize/(dist - z0 + 1));
                 circle.setPosition(pureColorProjection(pos).at(0)*100.f + mGlobalOffset.at(0), pureColorProjection(pos).at(1)*100.f + mGlobalOffset.at(1));
-                //std::cout << pureColorProjection(pos).at(0) << " " << pureColorProjection(pos).at(1) << std::endl;
                 circle.setFillColor(colorPureColor(pos));
                 (*pRenderWindow).draw(circle);
 
             }
             break;
         }
-    case 1:
+    case 1: //spatial
         {
 
             float distanceToObserver = sqrt(pos*pos);

@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1465994782 source:c:\users\sebi\documents\4dstuff\github\4d\4d\coordinatecross.cpp
+1470048430 source:c:\users\sebi\documents\4dstuff\github\4d\4d\coordinatecross.cpp
+	"stdafx.h"
 	"CoordinateCross.hpp"
 	"SFML/Graphics.hpp"
 	<vector>
-	"stdafx.h"
 
 1465994782 c:\users\sebi\documents\4dstuff\github\4d\4d\coordinatecross.hpp
 	"Object.hpp"
@@ -459,7 +459,7 @@
 	"CoordinateCross.hpp"
 	"PointOfView.hpp"
 
-1466616563 c:\users\sebi\documents\4dstuff\github\4d\4d\point.hpp
+1470049040 c:\users\sebi\documents\4dstuff\github\4d\4d\point.hpp
 	"Object.hpp"
 
 1466001520 c:\users\sebi\documents\4dstuff\github\4d\4d\observer.hpp
@@ -485,7 +485,7 @@
 	<algorithm>
 	<cmath>
 
-1470046843 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
+1470048251 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
 	"stdafx.h"
 	"Observer.hpp"
 	"ourMatrices.hpp"

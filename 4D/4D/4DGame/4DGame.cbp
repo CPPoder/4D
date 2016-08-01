@@ -112,6 +112,8 @@
 		<Unit filename="../Observer.hpp" />
 		<Unit filename="../Point.cpp" />
 		<Unit filename="../Point.hpp" />
+		<Unit filename="../PointOfView.cpp" />
+		<Unit filename="../PointOfView.hpp" />
 		<Unit filename="../World.cpp" />
 		<Unit filename="../World.hpp" />
 		<Unit filename="../main.cpp" />
