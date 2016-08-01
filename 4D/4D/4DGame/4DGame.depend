@@ -477,7 +477,7 @@
 	"myUsefulMath.hpp"
 	<cstdlib>
 
-1470047070 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
+1470051602 source:c:\users\sebi\documents\4dstuff\github\4d\4d\object.cpp
 	"stdafx.h"
 	"Object.hpp"
 	"ourMatrices.hpp"
@@ -485,13 +485,14 @@
 	<algorithm>
 	<cmath>
 
-1470048251 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
+1470050204 source:c:\users\sebi\documents\4dstuff\github\4d\4d\observer.cpp
 	"stdafx.h"
 	"Observer.hpp"
 	"ourMatrices.hpp"
 	"ourVectors.hpp"
 
-1470047692 source:c:\users\sebi\documents\4dstuff\github\4d\4d\point.cpp
+1470050203 source:c:\users\sebi\documents\4dstuff\github\4d\4d\point.cpp
+	"stdafx.h"
 	"Point.hpp"
 
 1463754202 source:c:\users\sebi\documents\4dstuff\github\4d\4d\stdafx.cpp

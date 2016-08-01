@@ -66,13 +66,51 @@ fd::Vector2f Object::pureColorProjection(fd::Vector4f pointIn)
 }
 
 //encodes the fourth dim in color when using the pureColor projection
+//Idea: walk through the rainbow from red to yellow to green to blue (red for near distance, blue for large)
+//The color encodes distances between 1 and 20
 sf::Color Object::colorPureColor(fd::Vector4f xIn)
 {
     sf::Color result(0,0,0,255);
-    result.r = 255;
-    int temp = std::min(int(floor(255.0/(xIn.at(3) - z0 + 1))), 255);
-    result.g = temp;
-    result.b = temp;
+    float dist = xIn.at(3);
+    if (dist < 5)
+    {
+        result.r = 255;
+        result.g = int(floor((dist-0.f)*51));
+        result.b = 0;
+    }
+    else
+    {
+        if(dist < 10)
+        {
+            result.r = int(floor((10.f - dist)*51));
+            result.g = 255;
+            result.b = 0;
+        }
+        else
+        {
+            if(dist < 15)
+            {
+                result.r = 0;
+                result.g = 255;
+                result.b = int(floor((dist - 10.f)*51));
+            }
+            else
+            {
+                if(dist < 20)
+                {
+                    result.r = 0;
+                    result.g = int(floor((20.f - dist)*51));
+                    result.b = 255;
+                }
+                else
+                {
+                    result.r = 0;
+                    result.g = 0;
+                    result.b = 255;
+                }
+            }
+        }
+    }
     return(result);
 }
 

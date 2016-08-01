@@ -2,7 +2,7 @@
 #include "Point.hpp"
 
 Point::Point(fd::Vector4f _position)
-    : mPosition(_position), mSize(10.f)
+    : mPosition(_position), mSize(30.f)
 {
 
 }
