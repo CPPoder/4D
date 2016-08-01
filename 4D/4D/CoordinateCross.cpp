@@ -1,7 +1,7 @@
+#include "stdafx.h"
 #include "CoordinateCross.hpp"
 #include "SFML/Graphics.hpp"
 #include <vector>
-#include "stdafx.h"
 
 CoordinateCross::CoordinateCross()
     : mVertexArray(sf::Lines, 8), mPosition2D(100.f, 300.f)

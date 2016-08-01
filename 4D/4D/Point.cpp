@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Point.hpp"
 
 Point::Point(fd::Vector4f _position)
