@@ -18,6 +18,9 @@ public:
     //Variables controlling the coloring
     float mColorDeepness;
 
+    //Controlling the zoom factor; higher zoom means a smaller screen but hopefully less strange effects
+    float zoom;
+
     //Controlling the zoom
     fd::Vector2f alpha;
 

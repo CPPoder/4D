@@ -101,7 +101,7 @@ namespace fd
 			std::cout << vector.at(dimension - 1) << std::endl;
 		}
 
-	};	
+	};
 
 
 ////////////////////////////////////////

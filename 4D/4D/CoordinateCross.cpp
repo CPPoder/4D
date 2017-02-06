@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CoordinateCross.hpp"
-#include "SFML/Graphics.hpp"
+//#include "SFML/Graphics.hpp"
 #include <vector>
 
 CoordinateCross::CoordinateCross()

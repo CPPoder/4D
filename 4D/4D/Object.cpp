@@ -6,7 +6,7 @@
 #include <cmath>
 
 Object::Object()
-    : mGlobalOffset({720.0f, 450.0f}), mColorDeepness(1.f), alpha({0.5f, 0.5f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), f({0., -1.f}), z0(1.f), mProjectionManner(0), mRestrictVisibility(true)
+    : mGlobalOffset({720.0f, 450.0f}), mColorDeepness(1.f), zoom (200.f), alpha({0.5f, 0.5f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), f({0., -1.f}), z0(1.f), mProjectionManner(0), mRestrictVisibility(true)
 {
 
 }
@@ -61,7 +61,8 @@ fd::Vector2f Object::pureColorProjection(fd::Vector4f pointIn)
     fd::Vector2f result;
     fd::Vector2f x1x2 ({pointIn.at(0), pointIn.at(1)});
 
-    result = f - (f - x1x2)/(pointIn.at(2) - z0 + 1);
+    result = x1x2*(1/pointIn.at(2));
+    //result = f - (f - x1x2)/(pointIn.at(2) - z0 + 1);
     return(result);
 }
 

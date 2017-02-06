@@ -3,7 +3,10 @@
 PointOfView::PointOfView()
     : circle(5)
 {
-    circle.setPosition(f.at(0)*100.f + mGlobalOffset.at(0), f.at(1)*100.f + mGlobalOffset.at(1));
+    //circle.setPosition(f.at(0)*100.f + mGlobalOffset.at(0), f.at(1)*100.f + mGlobalOffset.at(1));
+    //Issue: What meaning has the f. ???
+    circle.setOrigin(5,5);
+    circle.setPosition(mGlobalOffset.at(0), mGlobalOffset.at(1));
     circle.setFillColor(sf::Color::Blue);
 }
 
