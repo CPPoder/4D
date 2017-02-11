@@ -27,33 +27,17 @@ void Point::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vec
     fd::Vector4f pos = transformToObserversView(position, view, mPosition);
     std::cout << pos.at(0) << " "  << pos.at(1) << " "  << pos.at(2) << " "  << pos.at(3) << std::endl;
 
-    switch(mProjectionManner)
-    {
-    case 0: //pureColor
+
+        if (isPointVisible(pos))
         {
-            if (mRestrictVisibility && isPointVisible(pos))
-            {
-                float dist = sqrt(pos*pos);
-                float dist3D = sqrt(pos.at(0)*pos.at(0) + pos.at(1)*pos.at(1) + pos.at(2)*pos.at(2));
+            float dist = sqrt(pos*pos);
+            float dist3D = sqrt(pos.at(0)*pos.at(0) + pos.at(1)*pos.at(1) + pos.at(2)*pos.at(2));
 
-                float adoptedSize = mSize/(dist - z0 + 1);
-                sf::CircleShape circle(adoptedSize);
-                circle.setOrigin(adoptedSize, adoptedSize);
-                circle.setPosition(pureColorProjection(pos).at(0)*zoom + mGlobalOffset.at(0), pureColorProjection(pos).at(1)*zoom + mGlobalOffset.at(1));
-                circle.setFillColor(colorPureColor(pos));
-                (*pRenderWindow).draw(circle);
-
-            }
-            break;
-        }
-    case 1: //spatial
-        {
-
-            float distanceToObserver = sqrt(pos*pos);
-            //std::cout << "distance to Observer: " << distanceToObserver << std::endl;
-            sf::CircleShape circle(10/log(distanceToObserver + 1));
-            circle.setPosition(spatialProjection(pos).at(0) + mGlobalOffset.at(0), spatialProjection(pos).at(1) + mGlobalOffset.at(1));
+            float adoptedSize = mSize/(dist - z0 + 1);
+            sf::CircleShape circle(adoptedSize);
+            circle.setOrigin(adoptedSize, adoptedSize);
+            circle.setPosition(pureColorProjection(pos).at(0)*zoom + mGlobalOffset.at(0), pureColorProjection(pos).at(1)*zoom + mGlobalOffset.at(1));
+            circle.setFillColor(colorPureColor(pos));
             (*pRenderWindow).draw(circle);
         }
-    }
 }

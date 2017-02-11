@@ -29,17 +29,11 @@ private:
     //The observer
     Observer mObserver;
 
-    // The coordinate cross
-    CoordinateCross mCoordinateCross;
-
     // The point of view
     PointOfView mPointOfView;
 
-    //Variables controlling the sensitivity of the controlling
+    //Variables controlling the sensitivity of the controlling: bigger alpha means faster rotation
     float mAlpha;
-
-    //Variable controlling the coloring of the vertices
-    float mColorDeepness;
 
 
 

@@ -8,34 +8,16 @@
 
 class Object : public Element
 {
-private:
-    //fd::Vector4f mPosition;
 
 public:
     //Variable controlling the centering of the drawing
     fd::Vector2f mGlobalOffset;
 
-    //Variables controlling the coloring
-    float mColorDeepness;
-
     //Controlling the zoom factor; higher zoom means a smaller screen but hopefully less strange effects
     float zoom;
 
-    //Controlling the zoom
-    fd::Vector2f alpha;
-
-    //Controlling the two focus points
-    fd::Vector2f f1;
-    fd::Vector2f f2;
-    //For pureColor projection
-    fd::Vector2f f;
-
     //Controlling the way, in which things get smaller when moving away
     float z0;
-
-    //Variables controlling the drawing style
-    int mProjectionManner;  // Describes which projection is used: 0: pureColor -    1: spatial -    2: parallel  - see documentation
-    bool mRestrictVisibility;
 
 
     //Konst/ Destruktor
@@ -51,13 +33,19 @@ public:
     fd::Vector4f transformToObserversView(fd::Vector4f *positionObserver, fd::Matrix44f *viewObserver, fd::Vector4f point);
 
     //Projection methods
+
+
+    //Old
     fd::Vector2f parallelProjection(fd::Vector4f pointIn);
 
+    //Old
     fd::Vector2f spatialProjection(fd::Vector4f pointIn);
 
     fd::Vector2f pureColorProjection(fd::Vector4f pointIn);
 
     //Coloring methods
+
+    //Old
     int colorScaling(float xIn, float colorDeepness);
 
     sf::Color projectionColor(fd::Vector4f xIn, float colorDeepness);

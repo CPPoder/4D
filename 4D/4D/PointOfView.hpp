@@ -4,6 +4,7 @@
 #include "Object.hpp"
 #include "ourVectors.hpp"
 
+// This is a point displayed in the direction in which the observer moves when pushing the forward button
 class PointOfView : public Object
 {
 private:

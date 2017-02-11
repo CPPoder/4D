@@ -511,10 +511,7 @@
 1470041613 source:c:\users\sebi\documents\4dstuff\github\4d\4d\pointofview.cpp
 	"PointOfView.hpp"
 
-1486413277 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\coordinatecross.cpp
-	"stdafx.h"
-	"CoordinateCross.hpp"
-	<vector>
+1486813561 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\coordinatecross.cpp
 
 1463834006 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\stdafx.h
 	<stdio.h>
@@ -526,7 +523,7 @@
 	"ourMatrices.hpp"
 	"SFML/Graphics.hpp"
 
-1486417787 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\object.hpp
+1486815275 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\object.hpp
 	"element.hpp"
 	"ourVectors.hpp"
 	"ourMatrices.hpp"
@@ -554,7 +551,7 @@
 	<initializer_list>
 	"SFML\Graphics.hpp"
 
-1469972820 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\cuboid.cpp
+1486813903 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\cuboid.cpp
 	"stdafx.h"
 	"SFML\Graphics.hpp"
 	<vector>
@@ -584,7 +581,7 @@
 	"Element.hpp"
 	"World.hpp"
 
-1470038037 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\world.hpp
+1486815096 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\world.hpp
 	<vector>
 	"Cuboid.hpp"
 	"Point.hpp"
@@ -599,7 +596,7 @@
 	"ourVectors.hpp"
 	"ourMatrices.hpp"
 
-1470037846 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\pointofview.hpp
+1486813561 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\pointofview.hpp
 	"Object.hpp"
 	"ourVectors.hpp"
 
@@ -614,7 +611,7 @@
 	"myUsefulMath.hpp"
 	<cstdlib>
 
-1486417787 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\object.cpp
+1486814535 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\object.cpp
 	"stdafx.h"
 	"Object.hpp"
 	"ourMatrices.hpp"
@@ -1012,13 +1009,13 @@
 	<string>
 	<vector>
 
-1486415693 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\world.cpp
+1486814709 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\world.cpp
 	"stdafx.h"
 	"World.hpp"
 	<iostream>
 	<vector>
 
-1486417787 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\point.cpp
+1486813795 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\point.cpp
 	"stdafx.h"
 	"Point.hpp"
 

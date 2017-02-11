@@ -123,6 +123,9 @@ Describes the position and orientation of the observer in space. Position is enc
 
 
 \subsection{Parallel Projection}
+
+!!!! This is not used any more!!!! 
+
 \subsubsection{Projecting}
 The idea of parallel projection is that any line in $x_3$ or $x_4$ direction is drawn in a certain direction (here: $x_3$ in a 45 degree angle to the upper right, $x_4$ to the upper left) and distances in one of those directions is scaled by a certain factor only. This means e.g. that objects in far distance have the same size as close objects. 
 
@@ -155,6 +158,9 @@ C) Both points are invisible
 Define $t^1 = \frac{x^1}{x^1 - y^1}, t^2 = \frac{x^2}{x^2 - y^2}$. If $x^1 (t^1 - t^2) > 0 \rightarrow $ the intervall $[(1 - t^1) \vec{x} + t^1 \vec{y}, (1 - t^2) \vec{x} + t^2 \vec{y}]$ is visible, else nothing is visible. 
 
 \subsection{Spatial projection}
+
+!!!!!!!!! This is also not used anymore !!!!!
+
 The spatial projection implemented uses the idea of all parallel lines \enquote{focusing} on a point lying in infty distance to the observer. 
 
 Such a projection can be achieved by using the projection map $p : \mathbb{R}^3 \to \mathbb{R}^2$ defined by: 
@@ -176,6 +182,7 @@ The notion of visibility has to be discussed! Probably according to pure color!
 \subsection{The pure-color projection}
 
 !!Warning: In this mode, restrictedVisibility always has to be true. 
+\newline
 
 \subsubsection{Projecting}
 This projection uses a standard 3D projection and encodes the fourth dimension in color only. Its implementation is quite simple, will have to be compared to the spatial 4D one. 

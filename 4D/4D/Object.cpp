@@ -6,10 +6,11 @@
 #include <cmath>
 
 Object::Object()
-    : mGlobalOffset({720.0f, 450.0f}), mColorDeepness(1.f), zoom (200.f), alpha({0.5f, 0.5f}), f1({500.f, -300.f}), f2({-500.f, -300.f}), f({0., -1.f}), z0(1.f), mProjectionManner(0), mRestrictVisibility(true)
+    : mGlobalOffset({720.0f, 450.0f}), zoom (200.f), z0(1.f)
 {
 
 }
+
 
 Object::~Object()
 {
@@ -24,6 +25,7 @@ fd::Vector4f Object::transformToObserversView(fd::Vector4f *positionObserver, fd
     return(result);
 }
 
+/*
 //Projects a point onto its position on the screen
 fd::Vector2f Object::parallelProjection(fd::Vector4f pointIn)
 {
@@ -42,7 +44,7 @@ fd::Vector2f Object::parallelProjection(fd::Vector4f pointIn)
 }
 
 
-//Projects a point onto its position in a spatial manner - in compairison to the parallelProjection method
+//Projects a point onto its position in a spatial manner - in comparison to the parallelProjection method
 fd::Vector2f Object::spatialProjection(fd::Vector4f pointIn)
 {
     fd::Vector2f result;
@@ -54,6 +56,8 @@ fd::Vector2f Object::spatialProjection(fd::Vector4f pointIn)
     result = fd::componentwiseMultiplication(f1 + f2 - (f1 - x1x2)*(1/(pointIn.at(2) - z0 +1)) - (f2 - x1x2)*(1/pointIn.at(3)),alpha);
     return(result);
 }
+*/
+
 
 //Does the simple 3D to 2D projection, fourth dim will be encoded in color
 fd::Vector2f Object::pureColorProjection(fd::Vector4f pointIn)
@@ -62,7 +66,6 @@ fd::Vector2f Object::pureColorProjection(fd::Vector4f pointIn)
     fd::Vector2f x1x2 ({pointIn.at(0), pointIn.at(1)});
 
     result = x1x2*(1/pointIn.at(2));
-    //result = f - (f - x1x2)/(pointIn.at(2) - z0 + 1);
     return(result);
 }
 
@@ -116,7 +119,7 @@ sf::Color Object::colorPureColor(fd::Vector4f xIn)
 }
 
 
-
+/*
 //Returns unsigned int in range 0 - 256 (adopted to rgb colors)
 //Points with high input value get a high output
 sf::Color Object::projectionColor(fd::Vector4f xIn, float colorDeepness)
@@ -136,6 +139,7 @@ int Object::colorScaling(float xIn, float colorDeepness)
     }
     return(result + 128);
 }
+*/
 
 //Input: An edge, whose coordinates may be smaller than 0 in dim 3,4 --> they shall not be projected, as they are behind the observer
 //Output: Edge, which is the visible part of the input (*visible in some sense, explained in the docs)

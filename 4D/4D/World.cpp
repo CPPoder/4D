@@ -5,7 +5,7 @@
 
 //Constructor
 World::World()
-    : mObserver(), mAlpha(1.f), mColorDeepness(1.f), mPointOfView()
+    : mObserver(), mAlpha(1.f), mPointOfView()
 {
     //Size of the world
     //Default standard while developing
@@ -60,8 +60,6 @@ void World::render(sf::RenderWindow *pRenderWindow)
     {
         cPoint.render(pRenderWindow, fView, fPosition);
     }
-    //Render the CoordinateCross
-    mCoordinateCross.render(pRenderWindow, fView, fPosition);
 
     //Render the PointOfView
     mPointOfView.render(pRenderWindow, fView, fPosition);

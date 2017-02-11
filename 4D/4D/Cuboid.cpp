@@ -37,7 +37,7 @@ void Cuboid::handleEvents()
 
 void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position)
 {
-    switch(mProjectionManner)
+    /*switch(mProjectionManner)
     {
     case 0: //Pure color
         {
@@ -256,6 +256,8 @@ void Cuboid::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Ve
             (*pRenderWindow).draw(tEdges);
         }
     }
+
+*/
 }
 
 
@@ -300,4 +302,3 @@ fd::Vector4f Cuboid::getPosition()
 {
     return(Cuboid::mPosition);
 }
-
