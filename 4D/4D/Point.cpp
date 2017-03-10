@@ -33,11 +33,11 @@ void Point::render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vec
             float dist = sqrt(pos*pos);
             float dist3D = sqrt(pos.at(0)*pos.at(0) + pos.at(1)*pos.at(1) + pos.at(2)*pos.at(2));
 
-            float adoptedSize = mSize/(dist - z0 + 1);
+            float adoptedSize = mSize/(dist);
             sf::CircleShape circle(adoptedSize);
             circle.setOrigin(adoptedSize, adoptedSize);
             circle.setPosition(pureColorProjection(pos).at(0)*zoom + mGlobalOffset.at(0), pureColorProjection(pos).at(1)*zoom + mGlobalOffset.at(1));
-            circle.setFillColor(colorPureColor(pos));
+            circle.setFillColor(colorPureColor(pos, 0, 20));
             (*pRenderWindow).draw(circle);
         }
 }

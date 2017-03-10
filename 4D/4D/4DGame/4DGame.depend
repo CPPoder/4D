@@ -523,7 +523,7 @@
 	"ourMatrices.hpp"
 	"SFML/Graphics.hpp"
 
-1486815275 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\object.hpp
+1489147853 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\object.hpp
 	"element.hpp"
 	"ourVectors.hpp"
 	"ourMatrices.hpp"
@@ -551,14 +551,14 @@
 	<initializer_list>
 	"SFML\Graphics.hpp"
 
-1486813903 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\cuboid.cpp
+1488897691 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\cuboid.cpp
 	"stdafx.h"
 	"SFML\Graphics.hpp"
 	<vector>
 	"ourVectors.hpp"
 	"Cuboid.hpp"
 
-1465984602 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\cuboid.hpp
+1489162731 c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\cuboid.hpp
 	"SFML\Graphics.hpp"
 	<vector>
 	"Object.hpp"
@@ -600,18 +600,19 @@
 	"Object.hpp"
 	"ourVectors.hpp"
 
-1465992231 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\main.cpp
+1489151482 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\main.cpp
 	"stdafx.h"
 	<iostream>
 	"SFML\Graphics.hpp"
 	"Framework.hpp"
+	"Point.hpp"
 
 1464784705 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\myusefulmath.cpp
 	"stdafx.h"
 	"myUsefulMath.hpp"
 	<cstdlib>
 
-1486814535 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\object.cpp
+1489162731 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\object.cpp
 	"stdafx.h"
 	"Object.hpp"
 	"ourMatrices.hpp"
@@ -1009,13 +1010,13 @@
 	<string>
 	<vector>
 
-1486814709 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\world.cpp
+1488896501 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\world.cpp
 	"stdafx.h"
 	"World.hpp"
 	<iostream>
 	<vector>
 
-1486813795 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\point.cpp
+1488892380 source:c:\users\sebi\documents\programmieren_privat\4dstuff\github\4d\4d\point.cpp
 	"stdafx.h"
 	"Point.hpp"
 

@@ -6,7 +6,7 @@
 #include <cmath>
 
 Object::Object()
-    : mGlobalOffset({720.0f, 450.0f}), zoom (200.f), z0(1.f)
+    : mGlobalOffset({720.0f, 450.0f}), zoom (200.f), z0(0.f)
 {
 
 }
@@ -71,39 +71,44 @@ fd::Vector2f Object::pureColorProjection(fd::Vector4f pointIn)
 
 //encodes the fourth dim in color when using the pureColor projection
 //Idea: walk through the rainbow from red to yellow to green to blue (red for near distance, blue for large)
-//The color encodes distances between 1 and 20
-sf::Color Object::colorPureColor(fd::Vector4f xIn)
+//The color encodes distances between valueMin and valueMax
+sf::Color Object::colorPureColor(fd::Vector4f xIn, float valueMin, float valueMax)
 {
+    if (valueMax < valueMin)
+    {
+        std::cout << "Error" << std::endl;
+    }
+    float interval = (valueMax - valueMin)/4.0; //Chosen such, because color function is defined on 4 areas differently
     sf::Color result(0,0,0,255);
     float dist = xIn.at(3);
-    if (dist < 5)
+    if (dist < valueMin + interval)
     {
         result.r = 255;
-        result.g = int(floor((dist-0.f)*51));
+        result.g = int(floor((dist-valueMin)*255.0/interval));
         result.b = 0;
     }
     else
     {
-        if(dist < 10)
+        if(dist < valueMin + 2*interval)
         {
-            result.r = int(floor((10.f - dist)*51));
+            result.r = int(floor((valueMin + 2*interval - dist)*255.0/interval));
             result.g = 255;
             result.b = 0;
         }
         else
         {
-            if(dist < 15)
+            if(dist < valueMin + 3*interval)
             {
                 result.r = 0;
                 result.g = 255;
-                result.b = int(floor((dist - 10.f)*51));
+                result.b = int(floor((dist - valueMin + 2*interval)*255.0/interval));
             }
             else
             {
-                if(dist < 20)
+                if(dist < valueMax)
                 {
                     result.r = 0;
-                    result.g = int(floor((20.f - dist)*51));
+                    result.g = int(floor((valueMax - dist)*255.0/interval));
                     result.b = 255;
                 }
                 else
@@ -145,7 +150,112 @@ int Object::colorScaling(float xIn, float colorDeepness)
 //Output: Edge, which is the visible part of the input (*visible in some sense, explained in the docs)
 fd::Matrix42f Object::correctEdge(fd::Vector4f vectorIn1, fd::Vector4f vectorIn2)
 {
-    fd::Matrix42f result(0.0f);
+
+    fd::Vector4f vectorIn1_ = vectorIn1;
+    fd::Vector4f vectorIn2_ = vectorIn2;
+    //Part 1: Check the color part (fourth direction)
+    fd::Matrix42f result(1000.f); //Convention to use 1000 if edge is invisible
+    if (vectorIn1_.at(3) < 0)
+    {
+        if(vectorIn2_.at(3) > 0)
+        {
+            fd::Vector4f cut = cuttingPoint4(vectorIn1_, vectorIn2_);
+            vectorIn1_ = cut;
+        }
+        else
+        {
+            return(result);
+        }
+    }
+    else
+    {
+        if (vectorIn2_.at(3) < 0)
+        {
+            fd::Vector4f cut = cuttingPoint4(vectorIn1_, vectorIn2_);
+            vectorIn2_ = cut;
+        }
+    }
+
+    //Part 2: Check the spatial part (third dimension)
+
+    if (vectorIn1_.at(2) < 0)
+    {
+        if(vectorIn2_.at(2) > 0)
+        {
+            fd::Vector4f cut = cuttingPoint3(vectorIn1_, vectorIn2_);
+            vectorIn1_ = cut;
+        }
+        else
+        {
+            return(result);
+        }
+    }
+    else
+    {
+        if (vectorIn2_.at(2) < 0)
+        {
+            fd::Vector4f cut = cuttingPoint3(vectorIn1_, vectorIn2_);
+            vectorIn2_ = cut;
+        }
+    }
+    for(int i = 0; i < 4; i++)
+    {
+        result.at(i, 0) = vectorIn1_.at(i);
+        result.at(i, 1) = vectorIn2_.at(i);
+    }
+    return(result);
+}
+
+
+
+
+
+
+fd::Vector4f Object::cuttingPoint4(fd::Vector4f vectorIn1, fd::Vector4f vectorIn2) //Calculates the cutting point of a line with the x4 = 0 plane
+// --> only the part with x4 > 0 is plotted
+{
+    if(vectorIn1.at(3)*vectorIn2.at(3) > 0)
+    {
+        std::cout << "Error! No intersection with the x4 plane" << std::endl;
+        fd::Vector4f result(1000.f);
+        return(result);
+    }
+    else
+    {
+        float t = vectorIn2.at(3)/(vectorIn2.at(3) - vectorIn1.at(3)); //Using parametrization by t*x + (1-t)*y
+        fd::Vector4f result = t*vectorIn1 + (1.f-t)*vectorIn2;
+        result.at(3) = 0.01f; //Could be also set to 0, but in analogy to cuttingPoint3 is set to 0.01
+        return(result);
+    }
+}
+
+
+fd::Vector4f Object::cuttingPoint3(fd::Vector4f vectorIn1, fd::Vector4f vectorIn2) //Calculates the cutting point of a line with the x3 = 0 plane
+// --> only the part with x4 > 0 is plotted
+{
+    if(vectorIn1.at(2)*vectorIn2.at(2) > 0)
+    {
+        std::cout << "Error! No intersection with the x3 plane" << std::endl;
+        fd::Vector4f result(1000.f);
+        return(result);
+    }
+    else
+    {
+        float t = vectorIn2.at(2)/(vectorIn2.at(2) - vectorIn1.at(2)); //Using parametrization by t*x + (1-t)*y
+        fd::Vector4f result = t*vectorIn1 + (1.f-t)*vectorIn2;
+        result.at(2) = 0.01f; //Make the point drawable, as a point with x3 = 0 causes trouble.
+        return(result);
+    }
+}
+
+
+
+
+
+
+
+ /*
+ fd::Matrix42f result(0.0f);
     result.at(0,0) = vectorIn1.at(0);
     result.at(1,0) = vectorIn1.at(1);
     result.at(0,1) = vectorIn2.at(0);
@@ -212,7 +322,7 @@ fd::Matrix42f Object::correctEdge(fd::Vector4f vectorIn1, fd::Vector4f vectorIn2
         }
     }
     return(result);
-}
+}*/
 
  bool Object::isPointVisible(fd::Vector4f point)
  {

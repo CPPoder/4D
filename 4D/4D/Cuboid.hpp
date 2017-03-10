@@ -15,6 +15,9 @@ private:
     //The order is given by: start with the edge at the position vector, then add the diagonal componentwise wrt the schema 0000, 0001, 0010, ..., 1111
     std::vector<fd::Vector4f> mCorners;
 
+    std::vector<fd::Vector4i> mEdgeMap; //Idea: EdgeMap contains 64 dual numbers of length 4 which describe pairwise the connected vertices.
+    std::vector<int> mEdgeMapIndex; //Contains the EdgeMap, but with the index of the corresponding Edge instead of the dual number
+
 
 public:
     Cuboid(fd::Vector4f _position, fd::Vector4f _diagonal);
@@ -25,6 +28,8 @@ public:
     void render(sf::RenderWindow *pRenderWindow, fd::Matrix44f *view, fd::Vector4f *position) override;
 
     void fillCorners(); //Writes the coordinates which follow from the mPosition and mDiagonal into mCorners
+
+    void fillEdgeMap();
 
     fd::Vector4f getPosition();
 

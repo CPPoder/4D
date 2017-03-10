@@ -50,13 +50,17 @@ public:
 
     sf::Color projectionColor(fd::Vector4f xIn, float colorDeepness);
 
-    sf::Color colorPureColor(fd::Vector4f xIn);
+    sf::Color colorPureColor(fd::Vector4f xIn, float valueMin, float valueMax);
 
     //Methods checking for visibility
 
     //Input: An edge, whose coordinates may be smaller than 0 in dim 3,4 --> they shall not be projected, as they are behind the observer
     //Output: Edge, which is the visible part of the input
     fd::Matrix42f correctEdge(fd::Vector4f vectorIn1, fd::Vector4f vectorIn2); //Correcting an edge
+
+    fd::Vector4f cuttingPoint4(fd::Vector4f vectorIn1, fd::Vector4f vectorIn2); //Cutting point of a line with the x4 = 0 plane
+
+    fd::Vector4f cuttingPoint3(fd::Vector4f vectorIn1, fd::Vector4f vectorIn2); //Cutting point of a line with the x3 = 0 plane
 
     bool isPointVisible(fd::Vector4f point); //Checks for a point
 
