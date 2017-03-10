@@ -6,6 +6,24 @@ Framework::Framework()
     : mWorld()
 {
 	pRenderWindow = new sf::RenderWindow(sf::VideoMode(1440, 900), "4D Engine");
+	pRenderWindow->setFramerateLimit(60u);
+
+	pArialFont = new sf::Font;
+	pArialFont->loadFromFile("./arial.ttf");
+
+	mFPSText.setFont(*pArialFont);
+	mFPSText.setPosition(sf::Vector2f(2.f, 0.f));
+	mFPSText.setString("FPS: ");
+	mFPSText.setCharacterSize(12u);
+	mFPSText.setFillColor(sf::Color::White);
+
+	mUtilizationText.setFont(*pArialFont);
+	mUtilizationText.setPosition(sf::Vector2f(2.f, 10.f));
+	mUtilizationText.setString("Util: ");
+	mUtilizationText.setCharacterSize(12u);
+	mUtilizationText.setFillColor(sf::Color::White);
+
+	mFPSClock.restart();
 }
 
 //Destructor
@@ -13,6 +31,9 @@ Framework::~Framework()
 {
 	delete pRenderWindow;
 	pRenderWindow = nullptr;
+
+	delete pArialFont;
+	pArialFont = nullptr;
 
 }
 
@@ -28,22 +49,35 @@ void Framework::handleEvents()
 		{
 			pRenderWindow->close();
 		}
+		if (mEvent.type == sf::Event::EventType::KeyReleased)
+		{
+			if (mEvent.key.code == sf::Keyboard::Key::Space)
+			{
+				mShowFPS = !mShowFPS;
+			}
+		}
 	}
 }
 
 void Framework::update()
 {
-    //Handle time
-    sf::Time elapsed = clock.restart();
-    mWorld.update(elapsed);
+    mWorld.update(mFrametime);
 }
 
 void Framework::render()
 {
 	pRenderWindow->clear();
 	mWorld.render(pRenderWindow);
+	if (mShowFPS)
+	{
+		pRenderWindow->draw(mFPSText);
+		pRenderWindow->draw(mUtilizationText);
+	}
+	sf::Time timeBeforeRendering = mFPSClock.getElapsedTime();
 	pRenderWindow->display();
+	mRenderTimePerFrame = mFPSClock.getElapsedTime() - timeBeforeRendering;
 }
+
 
 //Controlling is done by:
 //A - D (left - right): x1
@@ -112,37 +146,40 @@ void Framework::readKeyboard()
 }
 
 
+//Determine FPS
+void Framework::determineFrametime()
+{
+	static sf::Time timeSinceLastSecond(sf::seconds(0.f));
+	static unsigned int framesSinceLastSecond(0u);
+	static sf::Time renderTimeSinceLastSecond(sf::seconds(0.f));
+
+	mFrametime = mFPSClock.restart();
+	timeSinceLastSecond += mFrametime;
+	renderTimeSinceLastSecond += mRenderTimePerFrame;
+	++framesSinceLastSecond;
+
+	if (timeSinceLastSecond > sf::seconds(1.f))
+	{
+		mFPS = framesSinceLastSecond;
+		mFPSText.setString("FPS: " + std::to_string(mFPS));
+
+		mUtilization = (timeSinceLastSecond - renderTimeSinceLastSecond).asSeconds();
+		mUtilizationText.setString("Util: " + std::to_string(static_cast<int>(mUtilization * 100.f)) + "%");
+
+		framesSinceLastSecond = 0u;
+		timeSinceLastSecond = sf::seconds(0.f);
+		renderTimeSinceLastSecond = sf::seconds(0.f);
+	}
+}
+
+
 //Run
 void Framework::run()
 {
 	while (pRenderWindow->isOpen())
 	{
+		determineFrametime();
 		handleEvents();
-		float speed = 3.f;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
-		{
-			sf::View view = pRenderWindow->getView();
-			view.move(sf::Vector2f(-speed, 0.f));
-			pRenderWindow->setView(view);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
-		{
-			sf::View view = pRenderWindow->getView();
-			view.move(sf::Vector2f(speed, 0.f));
-			pRenderWindow->setView(view);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
-		{
-			sf::View view = pRenderWindow->getView();
-			view.move(sf::Vector2f(0.f, -speed));
-			pRenderWindow->setView(view);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
-		{
-			sf::View view = pRenderWindow->getView();
-			view.move(sf::Vector2f(0.f, speed));
-			pRenderWindow->setView(view);
-		}
 		update();
 		render();
 	}
