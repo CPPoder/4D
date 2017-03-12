@@ -15,6 +15,7 @@ public:
     int mMoveWS;
     int mMoveXY;
     int mMoveFB;
+    int mMoveLR;
 
     Observer();
     ~Observer();

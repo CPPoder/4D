@@ -60,6 +60,9 @@ public:
     void moveForward();
     void moveBackward();
     void stopMoveFB();
+    void moveLeft();
+    void moveRight();
+    void stopMoveLR();
 
 
 

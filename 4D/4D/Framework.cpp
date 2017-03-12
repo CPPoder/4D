@@ -46,15 +46,15 @@ void Framework::render()
 }
 
 //Controlling is done by:
-//A - D (left - right): x1
+//Left - Right (left - right): x1
 //W - S (up - down): x2
-//X - Y ( ??    ) : y
+//A - D ( ??    ) : y
 //Up - Down (move forward - move backwards) : v
 
 //Read out the input given by pressing keys on the keyboard
 void Framework::readKeyboard()
 {
-    //Block A - D
+    //Block A - D --> Moving to the left / right
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         mWorld.moveViewA();
@@ -68,7 +68,7 @@ void Framework::readKeyboard()
         mWorld.stopMoveAD();
     }
 
-    //Block W - S
+    //Block W - S --> Moving up / down
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         mWorld.moveViewW();
@@ -82,21 +82,21 @@ void Framework::readKeyboard()
         mWorld.stopMoveWS();
     }
 
-    //Block X - Y
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
+    //Block Q - E --> Moving in the fourth dimension
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::E))
     {
         mWorld.moveViewX();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         mWorld.moveViewY();
     }
-    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Y) && !sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         mWorld.stopMoveXY();
     }
 
-    //Block F - B
+    //Block F - B --> Moving forward and backward
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         mWorld.moveForward();
@@ -109,6 +109,22 @@ void Framework::readKeyboard()
     {
         mWorld.stopMoveFB();
     }
+
+    //Block Left - Right --> Move Left - Right
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        mWorld.moveLeft();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        mWorld.moveRight();
+    }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        mWorld.stopMoveLR();
+    }
+
+
 }
 
 

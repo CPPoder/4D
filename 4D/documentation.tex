@@ -85,7 +85,7 @@
 
 
 \section{Controlling}
-Controlling is done by using the keys W, A, S, D, X and Y for rotation the direction in which the observer looks and using Up and Down (right hand) for moving in direction of v (explained later) forwards or backwards. 
+Controlling is done by using the keys W, A, S, D, Q and E for rotating the direction in which the observer looks and using Up and Down (right hand) for moving in direction of the $x_3$-axis forwards or backwards. Furthermore, one can move to the left and the right by the Left and Right button. 
 
 
 \section{Structure of the project}
@@ -181,8 +181,6 @@ The notion of visibility has to be discussed! Probably according to pure color!
 
 \subsection{The pure-color projection}
 
-!!Warning: In this mode, restrictedVisibility always has to be true. 
-\newline
 
 \subsubsection{Projecting}
 This projection uses a standard 3D projection and encodes the fourth dimension in color only. Its implementation is quite simple, will have to be compared to the spatial 4D one. 
@@ -198,6 +196,7 @@ where $z_0$ again is the parameter described above. Note that objects having $z_
 Following from the above construction of the projecting method, it seems senseful to call a point visible if it has $x_3 > z_0$ and invisible else. 
 
 For the fourth dimension it is questionable whether their should be an invisible part. At the moment, I will implement that a point is only visible if he also has $x_4 > z_0$. 
+It turned out to be not a great disadvantage to set $z_0$ to zero, as it does not affect the visibility of anything in a disturbing manner. 
 
 \section{Saving the motion of the observer}
 
@@ -213,7 +212,7 @@ A change of coordinates can be easily expressed in terms of the current observer
 mView_{new} = R \cdot mView_{old} 
 \end{equation}
 
-for a reasoning which is a bit confusing for me right now. It is important to look at the system, in which the rotation is done. This system is fixed!git 
+for a reasoning which is a bit confusing for me right now. It is important to look at the system, in which the rotation is done. This system is fixed! 
 
 The advantage of this convention is that during the calculation of a points components in observers coordinates from its standard coordinates, one has to use the map $S' \to S$ as it's the inverse the map mapping the system $S$ on $S'$. Hence one does not need to invert the mView.
 
@@ -223,17 +222,7 @@ The total transformation of a points coordinates in S to its components in S' is
 \vec{x}_{S'} = mView \cdot (\vec{x}_S - \vec{mPosition}).
 \end{equation}
 
-The standard coordinates of S shall be expressed by $x_1, x_2, x_3, x_4$. For some reason, I would like to introduce new coordinates for the initial state of the observer: 
-
-\begin{equation}
-y = (0, 0, \frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}})^T
-\end{equation} and
-
-\begin{equation}
-v = (0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})^T
-\end{equation}
-
-and ($x_1, x_2, y, v$) the initial observers coordinates. 
+The standard coordinates of S shall be expressed by $x_1, x_2, x_3, x_4$. The observer looks at the beginning in the direction of $x_3$. 
 
 Moving of the observer then is implemented by: 
 

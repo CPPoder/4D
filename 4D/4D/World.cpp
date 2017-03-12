@@ -123,6 +123,20 @@ void World::stopMoveFB()
 }
 
 
+//Block Forward -- Backward
+void World::moveLeft()
+{
+    mObserver.mMoveLR = 1;
+}
+void World::moveRight()
+{
+    mObserver.mMoveLR = -1;
+}
+void World::stopMoveLR()
+{
+    mObserver.mMoveLR = 0;
+}
+
 
 
 

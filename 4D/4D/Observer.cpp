@@ -29,6 +29,7 @@ Observer::~Observer()
 void Observer::update(sf::Time &elapsed, float sensitivity)
 {   //The signs have to be checked!!
     fd::Vector4f vInStandardBasis({0,0,1,0});
+    fd::Vector4f LeftInStandardBasis({-1,0,0,0});
     if (mMoveAD != 0)
     {
         rotationX1(mMoveAD*sensitivity*elapsed.asSeconds());
@@ -44,6 +45,10 @@ void Observer::update(sf::Time &elapsed, float sensitivity)
     if (mMoveFB != 0)
     {
         mPosition = mPosition + mMoveFB*elapsed.asSeconds()*2.f*mView.getTransposed()*vInStandardBasis;
+    }
+    if (mMoveLR != 0)
+    {
+        mPosition = mPosition + mMoveLR*elapsed.asSeconds()*2.f*mView.getTransposed()*LeftInStandardBasis;
     }
 }
 
